@@ -14,10 +14,6 @@ The highest available resolution of the tiles the disc image made up of is 550 b
 
 Rustwari, this app gets the most recent image available and sets it as your wallpaper. (after resizing it a little bit...)
 
- <p align="center">
-<img src="https://himawari8.nict.go.jp/" alt="LOOK HERE!"/>
-</p>
-
 ## Requirements:
 
 1. rust

@@ -5,23 +5,25 @@ edition = "2021"
 
 [dependencies]
 futures = "0.3.19"
-anyhow = "1.0.52"
-rayon = "1.5.1"
-image = "0.23.14"
-chrono = "0.4.19"
-url = "2.2.2"
-http = "0.2.6"
-opencv = "0.62.0"
+anyhow = "*"
+rayon = "*"
+image = "*"
+chrono = "*"
+url = "*"
+http = "*"
 serde = {version = "*", features = ["derive"]} 
-serde_yaml = "0.8.23"
+serde_yaml = "*"
 async-recursion = "1.0.0"
-log = "0.4.14"
-wallpaper = "3.2.0"
+log = "*"
+wallpaper = "*"
 
+
+[dependencies.opencv]
+version = "*"
 
 [dependencies.tokio]
 version = "1.*"
 features = ["full"] 
 
 [dependencies.reqwest]
-version = "0.11.8"
+version = "*"

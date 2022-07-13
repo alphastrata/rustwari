@@ -7,7 +7,7 @@ use opencv::{
     prelude::*,
 };
 use std::collections::HashMap;
-use std::path::PathBuf;
+use std::path::Path;
 
 use crate::{fileutils::cleanup_tmp, himawaridt::HimawariDatetime, tiles::LocalTile};
 
@@ -57,12 +57,12 @@ pub(crate) async fn assemble_full_disc(
         range.push(cv_concat_array(&working_vec, Axis::X, Some(true)).await?); //NOTE: is this Some(bool) sloppy?
         working_vec.clear();
     }
-    let _ = concat_off_axis(range, Axis::Y, hwdt).await?;
+    concat_off_axis(range, Axis::Y, hwdt).await?;
 
     let p = std::path::Path::new("completed/").join(hwdt.pretty_filename());
     assert!(cleanup_tmp()?); //NOTE Cleanup the completed too?
 
-    Ok(crate::wallpaperutils::FullDisc::new(&p)?)
+    crate::wallpaperutils::FullDisc::new(&p)
 }
 
 // TODO: Consider removing the Axis args, as you're not giving the user a choice really...
@@ -86,7 +86,7 @@ async fn cv_concat_array(v: &Vec<LocalTile>, axis: Axis, keep_tmps: Option<bool>
     // keep the intermediate representations on disk...
     if keep_tmps.unwrap_or(false) {
         let filename = format!("completed/{}complete.png", v[0].get_xy().await.0);
-        let _ = imgcodecs::imwrite(&filename, &mat, &types::VectorOfi32::new()).unwrap();
+        imgcodecs::imwrite(&filename, &mat, &types::VectorOfi32::new()).unwrap();
     }
     Ok(mat)
 }
@@ -108,7 +108,7 @@ async fn concat_off_axis(range: Vector<Mat>, axis: Axis, hwdt: HimawariDatetime)
 }
 
 /// Retrieve the (width, height) of an image from its path.
-pub(crate) fn get_dims(p: &PathBuf) -> Result<(i32, i32)> {
+pub(crate) fn get_dims(p: &Path) -> Result<(i32, i32)> {
     let img = imgcodecs::imread(
         p.to_str()
             .expect("unable to parse filepath to read dimensions. in cv_get_dims"),

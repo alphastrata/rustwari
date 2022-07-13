@@ -2,8 +2,9 @@
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::io::Read;
+// use std::path;
+// use std::path::Path;
 use std::path::PathBuf;
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Config {
     pub tilesdir: String,

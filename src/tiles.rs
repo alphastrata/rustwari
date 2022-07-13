@@ -80,14 +80,14 @@ pub(crate) async fn fetch_tiles(
 /// Helper to return the x and y values from a given path
 pub(crate) fn get_x_y_from_filename(p: PathBuf) -> Result<(u32, u32), std::num::ParseIntError> {
     let pbstr = p.to_str().unwrap();
-    let x = pbstr.split("R").collect::<Vec<_>>()[1]
+    let x = pbstr.split('R').collect::<Vec<_>>()[1]
         .to_string()
-        .split("_")
+        .split('_')
         .collect::<Vec<_>>()[0]
         .parse::<u32>()
         .unwrap_or(0); //TODO: throw a number to cause an error later on?
 
-    let y = pbstr.split("C").collect::<Vec<_>>()[1]
+    let y = pbstr.split('C').collect::<Vec<_>>()[1]
         .to_string()
         .replace(".png", "")
         .parse::<u32>()
@@ -108,7 +108,7 @@ pub(crate) async fn build_tile_map(
 ) -> Result<HashMap<(u32, u32), LocalTile>> {
     let mut m: HashMap<(u32, u32), LocalTile> = HashMap::new();
     for tile in tiles.into_iter() {
-        if &tile.get_size_on_disk().await > &0 {
+        if tile.get_size_on_disk().await > 0 {
             //NOTE: actual size of a failed tile is around 200bytes
             m.insert((tile.x, tile.y), tile);
         } else {

@@ -31,7 +31,7 @@ async fn run() -> Result<()> {
 
     let tmpdir_contents = std::fs::read_dir(Path::new("tmp"))?;
     let mut local_tiles = Vec::new();
-    for entry in tmpdir_contents.into_iter() {
+    for entry in tmpdir_contents {
         let entry = entry.unwrap();
         let path = entry.path();
         let xy: (u32, u32) = get_x_y_from_filename(path.clone())?;
@@ -42,10 +42,10 @@ async fn run() -> Result<()> {
 
     // Set that badboy as your wallpaper.
     let mut fulldisc: FullDisc = assemble_full_disc(tile_map, hwdt).await?;
-    let _ = fulldisc.resize_this(5120, 5120)?;
+    fulldisc.resize_this(5120, 5120)?;
     let _ = fulldisc.set_this();
     println!("Sleeping for 10 minutes...");
-    std::thread::sleep(std::time::Duration::from_secs(700));
+    std::thread::sleep(std::time::Duration::from_secs(601));
     move_completed_to_backup(&fulldisc.path)?;
     Ok(())
 }

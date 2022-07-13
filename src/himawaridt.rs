@@ -1,6 +1,6 @@
 use anyhow::Result;
 use chrono::{Datelike, Timelike, Utc};
-use std::path::PathBuf;
+use std::path::Path;
 use url::{ParseError, Url};
 
 const URLBASE: &str = r#"https://himawari8.nict.go.jp/img/D531106/20d/550/"#;
@@ -23,8 +23,7 @@ impl HimawariDatetime {
     /// * `day` - The day
     /// * `h` - The hour
     /// * `m` - The minute
-    #[allow(dead_code)]
-    pub(crate) async fn new(year: u32, month: u32, day: u32, h: u32, m: u32) -> Self {
+    pub(crate) async fn _new(year: u32, month: u32, day: u32, h: u32, m: u32) -> Self {
         let now = Utc::now();
         if year <= 2015 && month < 8 // date is outside the dataset
             || year > now.year() as u32  // date is in the future
@@ -60,26 +59,17 @@ impl HimawariDatetime {
         )
     }
     /// Helper to get a HWDT back out of an existing file, usually used on a fulldisc
-    #[allow(dead_code)]
-    pub(crate) fn from_path(path: &PathBuf) -> Self {
+    pub(crate) fn _from_path(path: &Path) -> Self {
         let p = path.to_str().expect("unable to parse PathBuf");
 
         // example filename : fulldisc-2022-2-3 0_30.png
-        let p_split = p.split("-").collect::<Vec<&str>>();
+        let p_split = p.split('-').collect::<Vec<&str>>();
         let year = p_split[1].parse::<u32>().expect("unable to parse year");
         let month = p_split[2].parse::<u32>().expect("unable to parse month");
         let day = p_split[3].parse::<u32>().expect("unable to parse day");
-        let h_m = p_split[4].split("_").collect::<Vec<&str>>();
+        let h_m = p_split[4].split('_').collect::<Vec<&str>>();
         let h = h_m[0].parse::<u32>().expect("unable to parse hour");
         let m = h_m[1].parse::<u32>().expect("unable to parse minute");
-        println!("{}\n", p);
-        println!("{:#?}", p_split);
-        println!("{}", year);
-        println!("{}", month);
-        println!("{}\n", day);
-        println!("{:#?}", h_m);
-        println!("{}", h);
-        println!("{}\n", m);
 
         Self {
             year,

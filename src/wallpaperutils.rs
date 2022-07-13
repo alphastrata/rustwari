@@ -9,17 +9,14 @@ use wallpaper::{get, set_from_path, set_mode};
 pub(crate) struct FullDisc {
     pub path: PathBuf,
     //TODO: use these to intuitively setup a size appropriate for resizing (if indeed you decide that it's worthwhile to do so..)
-    #[allow(dead_code)]
     pub height: i32,
-    #[allow(dead_code)]
     pub width: i32,
-    #[allow(dead_code)]
     pub size: u64, // NOTE: a daytime image is almos 150mb, the nightime images can be as little as 20mb.
 }
 
 impl FullDisc {
     pub(crate) fn new(p: &PathBuf) -> Result<Self> {
-        let (width, height) = get_dims(&p)?;
+        let (width, height) = get_dims(p)?;
         let size = std::fs::metadata(&p.clone())?.len();
 
         Ok(Self {
@@ -31,7 +28,7 @@ impl FullDisc {
     }
     pub(crate) fn set_this(&self) -> Result<()> {
         println!("Currently:{:#?}", get().unwrap());
-        let _ = set_from_path(&self.path.to_str().unwrap());
+        let _ = set_from_path(self.path.to_str().unwrap());
         let _ = set_mode(wallpaper::Mode::Fit);
         println!("Newly Set:{:#?}", get().unwrap());
         Ok(())
@@ -42,9 +39,9 @@ impl FullDisc {
     pub(crate) fn resize_this(&mut self, width: i32, height: i32) -> Result<()> {
         let img = image::open(&self.path)?;
         let resized = img.resize(width as u32, height as u32, FilterType::Lanczos3);
-        let p = self.path.to_str().unwrap().replace(".png", ".jpg");
-        // let _ = resized.save(&p);
-        let _ = resized.save_with_format(&p, ImageFormat::Jpeg)?;
+        let p = self.path.to_str().unwrap(); //.replace(".png", ".jpg");
+                                             //;// let _ = resized.save(&p);
+        resized.save_with_format(&p, ImageFormat::Png)?;
         let p: PathBuf = PathBuf::from(p);
         self.path = fs::canonicalize(p)?;
         Ok(())

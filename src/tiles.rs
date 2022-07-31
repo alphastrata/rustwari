@@ -24,6 +24,7 @@ use url::{ParseError, Url};
 use crate::{
     fileutils::{exists, remove_failed_and_rerun},
     himawaridt::HimawariDatetime,
+    user_config::Config,
 };
 
 const URLBASE: &str = "https://himawari8.nict.go.jp/img/D531106/20d/550/"; //2018/08/18/161000_17_3.png";
@@ -47,7 +48,7 @@ pub(crate) async fn tokio_tile_fetcher(
     let client = client.clone();
     let tmp = tmp.clone();
     let handle = tokio::spawn(async move {
-        rt.download_image(hwdt, &client, tmp).await.unwrap(); // figure it's ok to destroy the hwdt here?
+        rt.download_image(hwdt, &client, &tmp).await.unwrap(); // figure it's ok to destroy the hwdt here?
     });
     handles.lock().unwrap().push(handle);
 }
@@ -62,19 +63,19 @@ pub(crate) async fn fetch_tiles(
     client: &Client,
     tilevec: Vec<RemoteTile>,
     hwdt: HimawariDatetime,
-    tmp: String,
+    uc: Config,
 ) -> Result<()> {
     let handles = Arc::new(Mutex::new(Vec::new()));
     for rt in tilevec.into_iter() {
-        println!("Tokio task added");
-        tokio_tile_fetcher(rt, hwdt, client, &handles, &tmp).await;
+        info!("Tokio task added");
+        tokio_tile_fetcher(rt, hwdt, client, &handles, &uc.tmp).await;
     }
     for handle in handles
         .lock()
         .expect("Unable to lock joinhandles")
         .drain(..)
     {
-        println!("\tTokio task complete");
+        info!("\tTokio task complete");
         handle.await?;
     }
     Ok(())
@@ -115,8 +116,8 @@ pub(crate) async fn build_tile_map(
             //NOTE: actual size of a failed tile is around 200bytes
             m.insert((tile.x, tile.y), tile);
         } else {
-            println!("Tile is not ok");
-            println!("{:#?}", tile);
+            info!("Tile is not ok");
+            info!("{:#?}", tile);
         }
     }
     Ok(m)
@@ -131,7 +132,7 @@ pub(crate) async fn build_tile_map(
 pub(crate) async fn fetch_full_disc(
     client: &Client,
     hwdt: HimawariDatetime,
-    tmp: &String,
+    uc: &Config,
 ) -> Result<Arc<Mutex<Vec<JoinHandle<()>>>>> {
     let handles = Arc::new(Mutex::new(Vec::new()));
 
@@ -139,12 +140,13 @@ pub(crate) async fn fetch_full_disc(
         for y in 0..COLMAX {
             let url = hwdt.get_url(x, y).await?;
             let rt = RemoteTile::new(x, y, url).await;
-            tokio_tile_fetcher(rt, hwdt, &client, &handles, &tmp).await;
+            dbg!(&rt);
+            tokio_tile_fetcher(rt, hwdt, client, &handles, &uc.tmp).await;
         }
     }
     if remove_failed_and_rerun()? > 0 {
         std::thread::sleep(Duration::from_millis(250));
-        fetch_full_disc(client, hwdt, tmp).await?;
+        fetch_full_disc(client, hwdt, uc).await?;
     }
     Ok(handles)
 }
@@ -177,7 +179,7 @@ impl LocalTile {
         let metadata = tokio::fs::metadata(p).await.unwrap();
         let size = metadata.len() as usize;
         if size < 200 {
-            println!("WARNING:{} is {} bytes.", p, size);
+            info!("WARNING:{} is {} bytes.", p, size);
         }
         size
     }
@@ -271,11 +273,11 @@ impl RemoteTile {
         &self,
         hwdt: HimawariDatetime,
         client: &Client,
-        tmp: String,
+        tmp: &String,
     ) -> Result<()> {
         let filename = format!(
             "{}/{}-{}-{} {:02}{:02} R{}_C{}.png",
-            tmp, hwdt.year, hwdt.month, hwdt.day, hwdt.h, hwdt.m, self.x, self.y
+            &tmp, hwdt.year, hwdt.month, hwdt.day, hwdt.h, hwdt.m, self.x, self.y
         );
 
         let url = self.url.clone();

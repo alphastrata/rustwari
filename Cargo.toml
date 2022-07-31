@@ -2,19 +2,21 @@
 name = "rustwari"
 version = "0.1.0"
 edition = "2021"
+author = "jer"
+opt-level = 3
 
 [dependencies]
-futures = "0.3.19"
 anyhow = "*"
-rayon = "*"
-image = "*"
+async-recursion = "1.0.0"
 chrono = "*"
-url = "*"
+futures = "0.3.19"
 http = "*"
+image = "*"
+log = "*"
+rayon = "*"
 serde = {version = "*", features = ["derive"]} 
 serde_yaml = "*"
-async-recursion = "1.0.0"
-log = "*"
+url = "*"
 wallpaper = "*"
 
 

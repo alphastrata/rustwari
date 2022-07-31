@@ -1,7 +1,9 @@
 use anyhow::Result;
 use std::path::Path;
 use std::path::PathBuf;
+use log::info;
 
+//TODO: add backup as a yml option where it belongs 
 const BACKUP: &str = "/media/jer/ARCHIVE/HIMAWARI_DATA";
 
 // check that the completed and tmp directories exist, and if not create them.
@@ -23,7 +25,7 @@ pub(crate) fn remove_failed_and_rerun() -> Result<u32, std::io::Error> {
         if path.extension().expect("Unable to view file extension.") == "png" {
             let metadata = path.metadata()?;
             if metadata.len() == 0 {
-                println!("{} is 0 bytes, removing", path.display());
+                info!("{} is 0 bytes, removing", path.display());
                 std::fs::remove_file(path)?;
                 count += 1;
             }

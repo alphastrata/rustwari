@@ -5,6 +5,7 @@ use image::ImageFormat;
 use std::fs;
 use std::path::PathBuf;
 use wallpaper::{get, set_from_path, set_mode};
+use log::info;
 
 pub(crate) struct FullDisc {
     pub path: PathBuf,
@@ -27,10 +28,10 @@ impl FullDisc {
         })
     }
     pub(crate) fn set_this(&self) -> Result<()> {
-        println!("Currently:{:#?}", get().unwrap());
+        info!("Currently:{:#?}", get().unwrap());
         let _ = set_from_path(self.path.to_str().unwrap());
         let _ = set_mode(wallpaper::Mode::Fit);
-        println!("Newly Set:{:#?}", get().unwrap());
+        info!("Newly Set:{:#?}", get().unwrap());
         Ok(())
     }
 

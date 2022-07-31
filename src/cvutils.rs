@@ -1,11 +1,7 @@
 use anyhow::Result;
 use opencv::core::Vector;
 use opencv::types;
-use opencv::{
-    core::{self},
-    imgcodecs,
-    prelude::*,
-};
+use opencv::{core, imgcodecs, prelude::*};
 use std::collections::HashMap;
 use std::path::Path;
 
@@ -46,23 +42,27 @@ pub(crate) async fn cv_load_image(p: &str) -> Result<core::Mat> {
 pub(crate) async fn assemble_full_disc(
     m: HashMap<(u32, u32), LocalTile>,
     hwdt: HimawariDatetime,
-    user_config: crate::user_config::Config,
+    uc: &user_config::Config,
 ) -> Result<crate::wallpaperutils::FullDisc> {
     let mut working_vec = vec![];
     let mut range: Vector<Mat> = Vector::new();
 
     for r in 0..ROWMAX {
-        working_vec.push(m.get(&(r, 0)).unwrap().clone());
+        working_vec.push(m.get(&(r, 0)).expect(format!("failed on m:{:#?}", m).as_str()).clone());
         for c in 1..COLMAX {
-            working_vec.push(m.get(&(r, c)).unwrap().clone());
+            working_vec.push(
+                m.get(&(r, c))
+                    .expect(format!("failed on m:{:#?}", m).as_str())
+                    .clone(),
+            );
         }
         range.push(cv_concat_array(&working_vec, Axis::X, Some(true)).await?); //NOTE: is this Some(bool) sloppy?
         working_vec.clear();
     }
     concat_off_axis(range, Axis::Y, hwdt).await?;
 
-    let p = std::path::Path::new(&user_config.completed).join(hwdt.pretty_filename());
-    assert!(cleanup_tmp()?); //NOTE Cleanup the completed too?
+    let p = std::path::Path::new(&uc.completed).join(hwdt.pretty_filename());
+    assert!(cleanup_tmp(&uc)?); //NOTE Cleanup the completed too?
 
     crate::wallpaperutils::FullDisc::new(&p)
 }
@@ -88,7 +88,7 @@ async fn cv_concat_array(v: &Vec<LocalTile>, axis: Axis, keep_tmps: Option<bool>
     // keep the intermediate representations on disk...
     if keep_tmps.unwrap_or(false) {
         let filename = format!("completed/{}complete.png", v[0].get_xy().await.0);
-        imgcodecs::imwrite(&filename, &mat, &types::VectorOfi32::new()).unwrap();
+        imgcodecs::imwrite(&filename, &mat, &types::VectorOfi32::new())?;
     }
     Ok(mat)
 }

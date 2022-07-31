@@ -1,4 +1,5 @@
 use anyhow::Result;
+use log::info;
 use reqwest::Client;
 use std::path::Path;
 
@@ -16,13 +17,11 @@ use tiles::{build_tile_map, fetch_full_disc, get_x_y_from_filename, LocalTile};
 use user_config::{Config, USERCONFIG};
 use wallpaperutils::FullDisc;
 
-async fn run() -> Result<()> {
-    let user_config = Config::new_from_yaml(USERCONFIG)?;
-
+async fn run(uc: &Config) -> Result<()> {
     let hwdt = HimawariDatetime::closest_to_now().await;
 
     let client = Client::new();
-    let handles = fetch_full_disc(&client, hwdt, &user_config.tmp).await?;
+    let handles = fetch_full_disc(&client, hwdt, &uc).await?;
 
     for h in handles
         .lock()
@@ -32,10 +31,11 @@ async fn run() -> Result<()> {
         h.await?;
     }
 
-    let tmpdir_contents = std::fs::read_dir(Path::new(&user_config.tmp))?;
+    let tmpdir_contents = std::fs::read_dir(Path::new(&uc.tmp))?;
+    dbg!(&tmpdir_contents);
     let mut local_tiles = Vec::new();
     for entry in tmpdir_contents {
-        let entry = entry.unwrap();
+        let entry = entry?;
         let path = entry.path();
         let xy: (u32, u32) = get_x_y_from_filename(path.clone())?;
         local_tiles.push(LocalTile::new(xy.0, xy.1, path.to_path_buf()).await);
@@ -44,10 +44,10 @@ async fn run() -> Result<()> {
     let tile_map = build_tile_map(local_tiles).await?;
 
     // Set that badboy as your wallpaper.
-    let mut fulldisc: FullDisc = assemble_full_disc(tile_map, hwdt).await?;
+    let mut fulldisc: FullDisc = assemble_full_disc(tile_map, hwdt, uc).await?;
     fulldisc.resize_this(5120, 5120)?;
     let _ = fulldisc.set_this();
-    println!("Sleeping for 10 minutes...");
+    info!("Sleeping for 10 minutes...");
     std::thread::sleep(std::time::Duration::from_secs(601));
     move_completed_to_backup(&fulldisc.path)?;
     Ok(())
@@ -55,8 +55,11 @@ async fn run() -> Result<()> {
 #[tokio::main]
 async fn main() -> Result<()> {
     check_setup().await?;
+    Config::check_config_exits(USERCONFIG)?;
+    let uc = Config::new_from_yaml(USERCONFIG)?;
+
     loop {
-        run().await?;
+        run(&uc).await?;
     }
     #[allow(unreachable_code)]
     Ok(())

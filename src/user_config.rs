@@ -1,20 +1,24 @@
-#[allow(unused_imports)]
 use anyhow::{Error, Result};
+use log::info;
 use serde::{Deserialize, Serialize};
 use std::io::Read;
 use std::path::Path;
 
-use std::fs::{create_dir, write};
+use std::fs::write;
 
 pub const USERCONFIG: &str = "config.yml";
 
+/// Config holds all the information a user will need to populate their yaml file with in order to
+/// control how rustwari organises downloaded files etc.
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Config {
     pub tilesdir: String,
     pub completed: String,
     pub tmp: String,
 }
+
 impl Config {
+    #[allow(dead_code)]
     pub fn new(tilesdir: String, completed: String, tmp: String, _keep_for: u32) -> Self {
         Self {
             tilesdir,
@@ -36,32 +40,27 @@ impl Config {
     }
 
     /// creates a user's default yml, should the not have one etc..
-    pub fn check_config_exits() -> Result<bool, Error> {
-        println!("check_config_exits trigger");
-        if Path::new(USERCONFIG).is_file() {
-            println!("user.yml config file found!");
-            return Ok(true);
+    pub fn check_config_exits<P>(p: P) -> Result<(), Error>
+    where
+        P: AsRef<Path> + std::convert::AsRef<std::ffi::OsStr>,
+    {
+        info!("check_config_exits trigger");
+        if Path::new(&p).is_file() {
+            info!("user.yml config file found!");
         }
-        if Path::new("/home/jer/.config/stainglass/").is_dir() {
-            Self::create_yml()?;
-            println!("Directory exists, but user.yml does not, creating...");
-            Ok(true)
-        } else {
-            create_dir("/home/jer/.config/stainglass/")?;
-            Self::create_yml()?;
-            println!("Directory does not exist, creating it and user config...");
-            Ok(true)
-        }
+        info!("config not found, creating");
+         Self::create_yml()?;
+        Ok(())
     }
     /// Creates the default .yml config file
     fn create_yml() -> Result<(), std::io::Error> {
         let defaults = r"#
-                ./config.yml: line 1: tilesdir:: command not found
-                ./config.yml: line 2: tmp:: command not found
-                ./config.yml: line 3: completed:: command not found#";
+                        tilesdir: /media/jer/ARCHIVE/HIMAWARI_DATA/tiles/
+                        tmp: /media/jer/ARCHIVE/HIMAWARI_DATA/tmp/
+                        completed: /media/jer/ARCHIVE/HIWARI_DATA/completed/#";
 
         write(USERCONFIG, defaults)?;
-        println!("user's config.yml written to disk");
+        info!("user's config.yml written to disk");
 
         Ok(())
     }

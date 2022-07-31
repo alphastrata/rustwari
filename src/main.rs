@@ -13,13 +13,16 @@ use cvutils::assemble_full_disc;
 use fileutils::{check_setup, move_completed_to_backup};
 use himawaridt::HimawariDatetime;
 use tiles::{build_tile_map, fetch_full_disc, get_x_y_from_filename, LocalTile};
+use user_config::{Config, USERCONFIG};
 use wallpaperutils::FullDisc;
 
 async fn run() -> Result<()> {
+    let user_config = Config::new_from_yaml(USERCONFIG)?;
+
     let hwdt = HimawariDatetime::closest_to_now().await;
 
     let client = Client::new();
-    let handles = fetch_full_disc(&client, hwdt).await?;
+    let handles = fetch_full_disc(&client, hwdt, &user_config.tmp).await?;
 
     for h in handles
         .lock()
@@ -29,7 +32,7 @@ async fn run() -> Result<()> {
         h.await?;
     }
 
-    let tmpdir_contents = std::fs::read_dir(Path::new("tmp"))?;
+    let tmpdir_contents = std::fs::read_dir(Path::new(&user_config.tmp))?;
     let mut local_tiles = Vec::new();
     for entry in tmpdir_contents {
         let entry = entry.unwrap();

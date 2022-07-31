@@ -42,10 +42,12 @@ pub(crate) async fn tokio_tile_fetcher(
     hwdt: HimawariDatetime,
     client: &Client,
     handles: &Arc<Mutex<Vec<tokio::task::JoinHandle<()>>>>,
+    tmp: &String,
 ) {
     let client = client.clone();
+    let tmp = tmp.clone();
     let handle = tokio::spawn(async move {
-        rt.download_image(hwdt, &client).await.unwrap(); // figure it's ok to destroy the hwdt here?
+        rt.download_image(hwdt, &client, tmp).await.unwrap(); // figure it's ok to destroy the hwdt here?
     });
     handles.lock().unwrap().push(handle);
 }
@@ -60,11 +62,12 @@ pub(crate) async fn fetch_tiles(
     client: &Client,
     tilevec: Vec<RemoteTile>,
     hwdt: HimawariDatetime,
+    tmp: String,
 ) -> Result<()> {
     let handles = Arc::new(Mutex::new(Vec::new()));
     for rt in tilevec.into_iter() {
         println!("Tokio task added");
-        tokio_tile_fetcher(rt, hwdt, client, &handles).await;
+        tokio_tile_fetcher(rt, hwdt, client, &handles, &tmp).await;
     }
     for handle in handles
         .lock()
@@ -128,6 +131,7 @@ pub(crate) async fn build_tile_map(
 pub(crate) async fn fetch_full_disc(
     client: &Client,
     hwdt: HimawariDatetime,
+    tmp: &String,
 ) -> Result<Arc<Mutex<Vec<JoinHandle<()>>>>> {
     let handles = Arc::new(Mutex::new(Vec::new()));
 
@@ -135,12 +139,12 @@ pub(crate) async fn fetch_full_disc(
         for y in 0..COLMAX {
             let url = hwdt.get_url(x, y).await?;
             let rt = RemoteTile::new(x, y, url).await;
-            tokio_tile_fetcher(rt, hwdt, &client, &handles).await;
+            tokio_tile_fetcher(rt, hwdt, &client, &handles, &tmp).await;
         }
     }
     if remove_failed_and_rerun()? > 0 {
         std::thread::sleep(Duration::from_millis(250));
-        fetch_full_disc(client, hwdt).await?;
+        fetch_full_disc(client, hwdt, tmp).await?;
     }
     Ok(handles)
 }
@@ -267,10 +271,11 @@ impl RemoteTile {
         &self,
         hwdt: HimawariDatetime,
         client: &Client,
+        tmp: String,
     ) -> Result<()> {
         let filename = format!(
-            "tmp/{}-{}-{} {:02}{:02} R{}_C{}.png",
-            hwdt.year, hwdt.month, hwdt.day, hwdt.h, hwdt.m, self.x, self.y
+            "{}/{}-{}-{} {:02}{:02} R{}_C{}.png",
+            tmp, hwdt.year, hwdt.month, hwdt.day, hwdt.h, hwdt.m, self.x, self.y
         );
 
         let url = self.url.clone();

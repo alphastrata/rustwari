@@ -48,16 +48,11 @@ pub(crate) async fn exists(path: PathBuf) -> bool {
     false
 }
 // Old tiles, or intermediate concats should be cleaned up
-pub(crate) fn cleanup_tmp() -> Result<bool, std::io::Error> {
-    for entry in std::fs::read_dir("tmp")? {
+pub(crate) fn cleanup_tmp(uc: &crate::user_config::Config) -> Result<bool, std::io::Error> {
+    //TODO: convert to filtermap
+    for entry in std::fs::read_dir(&uc.tmp)? {
         let path = entry?.path();
         if path.extension().expect("Unable to view file extension.") == "png" {
-            std::fs::remove_file(path)?;
-        }
-    }
-    for entry in std::fs::read_dir("completed")? {
-        let path = entry?.path();
-        if !path.to_str().unwrap().contains("fulldisc") {
             std::fs::remove_file(path)?;
         }
     }

@@ -9,9 +9,9 @@ use wallpaper::{get, set_from_path, set_mode};
 pub(crate) struct FullDisc {
     pub path: PathBuf,
     //TODO: use these to intuitively setup a size appropriate for resizing (if indeed you decide that it's worthwhile to do so..)
-    pub height: i32,
-    pub width: i32,
-    pub size: u64, // NOTE: a daytime image is almos 150mb, the nightime images can be as little as 20mb.
+    pub(crate) height: i32,
+    pub(crate) width: i32,
+    pub(crate) size: u64, // NOTE: a daytime image is almos 150mb, the nightime images can be as little as 20mb.
 }
 
 impl FullDisc {

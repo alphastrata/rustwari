@@ -9,6 +9,7 @@ use opencv::{
 use std::collections::HashMap;
 use std::path::Path;
 
+use crate::user_config;
 use crate::{fileutils::cleanup_tmp, himawaridt::HimawariDatetime, tiles::LocalTile};
 
 const ROWMAX: u32 = 20;
@@ -45,6 +46,7 @@ pub(crate) async fn cv_load_image(p: &str) -> Result<core::Mat> {
 pub(crate) async fn assemble_full_disc(
     m: HashMap<(u32, u32), LocalTile>,
     hwdt: HimawariDatetime,
+    user_config: crate::user_config::Config,
 ) -> Result<crate::wallpaperutils::FullDisc> {
     let mut working_vec = vec![];
     let mut range: Vector<Mat> = Vector::new();
@@ -59,7 +61,7 @@ pub(crate) async fn assemble_full_disc(
     }
     concat_off_axis(range, Axis::Y, hwdt).await?;
 
-    let p = std::path::Path::new("completed/").join(hwdt.pretty_filename());
+    let p = std::path::Path::new(&user_config.completed).join(hwdt.pretty_filename());
     assert!(cleanup_tmp()?); //NOTE Cleanup the completed too?
 
     crate::wallpaperutils::FullDisc::new(&p)

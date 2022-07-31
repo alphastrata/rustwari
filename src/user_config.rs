@@ -18,14 +18,6 @@ pub struct Config {
 }
 
 impl Config {
-    #[allow(dead_code)]
-    pub fn new(tilesdir: String, completed: String, tmp: String, _keep_for: u32) -> Self {
-        Self {
-            tilesdir,
-            completed,
-            tmp,
-        }
-    }
     pub fn new_from_yaml<P>(p: P) -> Result<Self, std::io::Error>
     where
         P: AsRef<Path>,
@@ -49,7 +41,7 @@ impl Config {
             info!("user.yml config file found!");
         }
         info!("config not found, creating");
-         Self::create_yml()?;
+        Self::create_yml()?;
         Ok(())
     }
     /// Creates the default .yml config file

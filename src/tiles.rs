@@ -1,15 +1,6 @@
 use anyhow::Result;
 use async_recursion::async_recursion;
-use image::imageops::FilterType;
-use image::DynamicImage;
-use image::ImageError;
 use log::info;
-use opencv::core::AccessFlag::ACCESS_READ;
-use opencv::{
-    core::{self, UMat, UMatUsageFlags},
-    imgcodecs, imgproc,
-    prelude::*,
-};
 use reqwest::Client;
 use std::collections::HashMap;
 use std::path::Path;
@@ -53,34 +44,6 @@ pub(crate) async fn tokio_tile_fetcher(
     handles.lock().unwrap().push(handle);
 }
 
-/// A helper to make using the tokio tile fetcher over collections of tiles easier.
-/// #Arguments:
-/// * `client` - Client
-/// * `tiles` - a Vec<RemoteTile>
-/// * `hwdt` - a valid HimawariDatetime
-#[allow(dead_code)]
-pub(crate) async fn fetch_tiles(
-    client: &Client,
-    tilevec: Vec<RemoteTile>,
-    hwdt: HimawariDatetime,
-    uc: Config,
-) -> Result<()> {
-    let handles = Arc::new(Mutex::new(Vec::new()));
-    for rt in tilevec.into_iter() {
-        info!("Tokio task added");
-        tokio_tile_fetcher(rt, hwdt, client, &handles, &uc.tmp).await;
-    }
-    for handle in handles
-        .lock()
-        .expect("Unable to lock joinhandles")
-        .drain(..)
-    {
-        info!("\tTokio task complete");
-        handle.await?;
-    }
-    Ok(())
-}
-
 /// Helper to return the x and y values from a given path
 pub(crate) fn get_x_y_from_filename(p: PathBuf) -> Result<(u32, u32), std::num::ParseIntError> {
     let pbstr = p.to_str().unwrap();
@@ -98,12 +61,6 @@ pub(crate) fn get_x_y_from_filename(p: PathBuf) -> Result<(u32, u32), std::num::
         .unwrap_or(0);
 
     Ok((x, y))
-}
-/// Construct a LocatTile from a PathBuf.
-#[allow(dead_code)]
-pub(crate) async fn build_from_path(p: PathBuf) -> Result<LocalTile> {
-    let xy = get_x_y_from_filename(p.clone())?;
-    Ok(LocalTile::new(xy.0, xy.1, p).await)
 }
 /// Builds a hashmap of LocalTiles, where the key is the x,y coordinate of the tile.
 /// The value is the file loaded into memory with imgcodecs::imread() from the opencv library.
@@ -167,9 +124,6 @@ impl LocalTile {
             panic!("{} Tile does not exist", path.to_str().unwrap());
         }
     }
-    pub(crate) async fn get_path(&self) -> PathBuf {
-        self.path.clone()
-    }
     pub(crate) fn path_as_str(&self) -> &str {
         self.path.to_str().unwrap()
     }
@@ -183,34 +137,9 @@ impl LocalTile {
         }
         size
     }
-    #[allow(dead_code)]
-    pub(crate) async fn load_with_cv(&self) -> Result<core::Mat, std::io::Error> {
-        Ok(crate::cvutils::cv_load_image(self.path_as_str())
-            .await
-            .unwrap())
-    }
     /// A getter for the x, and y values representing the tile's location.
     pub(crate) async fn get_xy(&self) -> (u32, u32) {
         (self.x, self.y)
-    }
-    /// Tiles are 550*550 pixels, so, you may find it helpful to shrink them depending on your use case.
-    // TODO: Change the image_resizer in wallpaperutils to use this one?
-    #[allow(dead_code)]
-    pub(crate) async fn resize(&self, width: u32, height: u32) -> Result<DynamicImage, ImageError> {
-        Ok(image::open(self.get_path().await)?.resize(width, height, FilterType::Lanczos3))
-        // TODO: Consider offering fitler options?
-    }
-    #[allow(dead_code)] //NOTE: May use this later...
-    pub(crate) async fn greyscale(&self) -> Result<DynamicImage, ImageError> {
-        Ok(image::open(self.get_path().await)?.grayscale())
-    }
-    #[allow(dead_code)] //NOTE: May use this later ...
-    pub(crate) async fn cv_greyscale(&self) -> Result<()> {
-        let mat = imgcodecs::imread(self.path_as_str(), imgcodecs::IMREAD_COLOR)?;
-        let img = mat.get_umat(ACCESS_READ, UMatUsageFlags::USAGE_DEFAULT)?;
-        let mut gray = UMat::new(UMatUsageFlags::USAGE_DEFAULT);
-        imgproc::cvt_color(&img, &mut gray, imgproc::COLOR_BGR2GRAY, 0)?;
-        Ok(())
     }
 }
 /// A struct to hold the data for a single tile, prior to fetching it from the dataset
@@ -235,34 +164,6 @@ impl RemoteTile {
                 url: Url::parse("").unwrap(),
             }
         }
-    }
-    /// Constructs a new RemoteTile from a passed hmtd, x and y.
-    /// #Arguments:
-    /// * `x` - x coordinate of the tile
-    /// * `y` - y coordinate of the tile
-    /// * `hmtd` - a HimawariDatetime struct
-    #[allow(dead_code)]
-    pub(crate) async fn new_from_hwdt(x: u32, y: u32, hwdt: HimawariDatetime) -> Result<Self> {
-        let url = hwdt.get_url(x, y).await?;
-        Ok(Self::new(x, y, url).await)
-    }
-    /// builds valid urls for tiles from HimawariDatetime
-    /// # Arguments:
-    /// * `hmtd` - a valid HimawariDatetime
-    /// * `x` - x coordinate of tile
-    /// * `y` - y coordinate of tile
-    /// NOTE: available on both the RemoteTile and the HimawariDatetime structs.  
-    #[allow(dead_code)]
-    pub(crate) async fn get_url(self, hwdt: HimawariDatetime) -> Result<Url, ParseError> {
-        // https://himawari8.nict.go.jp/img/D531106/20d/550/2018/08/18/161000_17_3.png
-        // 2018/08/18/161000_17_3.png"; the part we're interested in
-        let url = Url::parse(
-            &format!(
-                "{}{}/{:02}/{:02}/{:02}{:02}00_{}_{}.png",
-                URLBASE, hwdt.year, hwdt.month, hwdt.day, hwdt.h, hwdt.m, self.x, self.y
-            )[..],
-        )?;
-        Ok(url)
     }
     /// Downloads the tile to the specified path
     /// #Arguments:

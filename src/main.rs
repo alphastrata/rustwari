@@ -32,12 +32,12 @@ async fn run(uc: &Config) -> Result<()> {
     }
 
     let tmpdir_contents = std::fs::read_dir(Path::new(&uc.tmp))?;
-    dbg!(&tmpdir_contents);
     let mut local_tiles = Vec::new();
     for entry in tmpdir_contents {
         let entry = entry?;
         let path = entry.path();
-        let xy: (u32, u32) = get_x_y_from_filename(path.clone())?;
+        let xy: (u32, u32) = get_x_y_from_filename(path.clone(), uc)?;
+
         local_tiles.push(LocalTile::new(xy.0, xy.1, path.to_path_buf()).await);
     }
 
@@ -54,9 +54,10 @@ async fn run(uc: &Config) -> Result<()> {
 }
 #[tokio::main]
 async fn main() -> Result<()> {
-    check_setup().await?;
     Config::check_config_exits(USERCONFIG)?;
     let uc = Config::new_from_yaml(USERCONFIG)?;
+
+    check_setup(&uc).await?;
 
     loop {
         run(&uc).await?;

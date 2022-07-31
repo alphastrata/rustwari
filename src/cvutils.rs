@@ -15,15 +15,6 @@ pub(crate) enum Axis {
     X,
     Y,
 }
-/// Save image with opencv  
-/// #Arguments:
-/// * `opencv::core::Mat` a Mat of the image you want to save
-/// * `&str` path to save it to
-#[allow(dead_code)]
-pub(crate) async fn cv_save_image(m: &core::Mat, p: &str) -> Result<()> {
-    let _ = imgcodecs::imwrite(p, &m, &types::VectorOfi32::new()).unwrap();
-    Ok(())
-}
 /// load image with opencv
 /// #Arguments:
 /// * `&str` path to load image from
@@ -48,7 +39,11 @@ pub(crate) async fn assemble_full_disc(
     let mut range: Vector<Mat> = Vector::new();
 
     for r in 0..ROWMAX {
-        working_vec.push(m.get(&(r, 0)).expect(format!("failed on m:{:#?}", m).as_str()).clone());
+        working_vec.push(
+            m.get(&(r, 0))
+                .expect(format!("failed on m:{:#?}", m).as_str())
+                .clone(),
+        );
         for c in 1..COLMAX {
             working_vec.push(
                 m.get(&(r, c))

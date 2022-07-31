@@ -1,18 +1,19 @@
+use crate::user_config::Config;
 use anyhow::Result;
+use log::info;
 use std::path::Path;
 use std::path::PathBuf;
-use log::info;
 
-//TODO: add backup as a yml option where it belongs 
+//TODO: add backup as a yml option where it belongs
 const BACKUP: &str = "/media/jer/ARCHIVE/HIMAWARI_DATA";
 
 // check that the completed and tmp directories exist, and if not create them.
-pub(crate) async fn check_setup() -> Result<()> {
-    if !exists(Path::new("completed").to_path_buf()).await {
-        std::fs::create_dir_all("completed")?;
+pub(crate) async fn check_setup(uc: &Config) -> Result<()> {
+    if !exists(Path::new(&uc.completed).to_path_buf()).await {
+        std::fs::create_dir_all(&uc.completed)?;
     }
-    if !exists(Path::new("tmp").to_path_buf()).await {
-        std::fs::create_dir_all("tmp")?;
+    if !exists(Path::new(&uc.tmp).to_path_buf()).await {
+        std::fs::create_dir_all(&uc.completed)?;
     }
     Ok(())
 }

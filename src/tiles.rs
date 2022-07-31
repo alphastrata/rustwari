@@ -45,20 +45,26 @@ pub(crate) async fn tokio_tile_fetcher(
 }
 
 /// Helper to return the x and y values from a given path
-pub(crate) fn get_x_y_from_filename(p: PathBuf) -> Result<(u32, u32), std::num::ParseIntError> {
-    let pbstr = p.to_str().unwrap();
-    let x = pbstr.split('R').collect::<Vec<_>>()[1]
+pub(crate) fn get_x_y_from_filename(
+    p: PathBuf,
+    uc: &Config,
+) -> Result<(u32, u32), std::num::ParseIntError> {
+    // FIXME: These unwraps need to be optioned out.
+    let mut pbstr = p.to_str().unwrap();
+    pbstr = pbstr.strip_prefix(&uc.tmp).unwrap();
+
+    let x = pbstr.split(" R").collect::<Vec<_>>()[1]
         .to_string()
         .split('_')
         .collect::<Vec<_>>()[0]
         .parse::<u32>()
-        .unwrap_or(0); //TODO: throw a number to cause an error later on?
+        .unwrap(); //FIXME: fix this
 
     let y = pbstr.split('C').collect::<Vec<_>>()[1]
         .to_string()
         .replace(".png", "")
         .parse::<u32>()
-        .unwrap_or(0);
+        .unwrap(); //FIXME: fix this
 
     Ok((x, y))
 }
@@ -68,6 +74,7 @@ pub(crate) async fn build_tile_map(
     tiles: Vec<LocalTile>,
 ) -> Result<HashMap<(u32, u32), LocalTile>> {
     let mut m: HashMap<(u32, u32), LocalTile> = HashMap::new();
+
     for tile in tiles.into_iter() {
         if tile.get_size_on_disk().await > 0 {
             //NOTE: actual size of a failed tile is around 200bytes
@@ -97,7 +104,6 @@ pub(crate) async fn fetch_full_disc(
         for y in 0..COLMAX {
             let url = hwdt.get_url(x, y).await?;
             let rt = RemoteTile::new(x, y, url).await;
-            dbg!(&rt);
             tokio_tile_fetcher(rt, hwdt, client, &handles, &uc.tmp).await;
         }
     }
@@ -125,7 +131,7 @@ impl LocalTile {
         }
     }
     pub(crate) fn path_as_str(&self) -> &str {
-        self.path.to_str().unwrap()
+        self.path.to_str().unwrap() //FIXME: fix this.
     }
     /// A failed tile will be 0 bytes, a disc of failures stitched will be <3mb.
     pub(crate) async fn get_size_on_disk(&self) -> usize {

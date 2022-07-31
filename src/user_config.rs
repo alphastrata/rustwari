@@ -46,10 +46,10 @@ impl Config {
     }
     /// Creates the default .yml config file
     fn create_yml() -> Result<(), std::io::Error> {
-        let defaults = r"#
-                        tilesdir: /media/jer/ARCHIVE/HIMAWARI_DATA/tiles/
-                        tmp: /media/jer/ARCHIVE/HIMAWARI_DATA/tmp/
-                        completed: /media/jer/ARCHIVE/HIWARI_DATA/completed/#";
+        let defaults = r"#\
+tilesdir: /media/jer/ARCHIVE/HIMAWARI_DATA/tiles/
+tmp: /media/jer/ARCHIVE/HIMAWARI_DATA/tmp/
+completed: /media/jer/ARCHIVE/HIWARI_DATA/completed/";
 
         write(USERCONFIG, defaults)?;
         info!("user's config.yml written to disk");

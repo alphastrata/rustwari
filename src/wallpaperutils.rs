@@ -2,10 +2,10 @@ use crate::cvutils::get_dims;
 use anyhow::Result;
 use image::imageops::FilterType;
 use image::ImageFormat;
+use log::info;
 use std::fs;
 use std::path::PathBuf;
 use wallpaper::{get, set_from_path, set_mode};
-use log::info;
 
 pub(crate) struct FullDisc {
     pub path: PathBuf,

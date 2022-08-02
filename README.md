@@ -33,6 +33,9 @@ _assuming you've cloned the repo and got all the above installed properly_
 2. `cargo build --release`
 3. `./target/release/rustwari`
 
+_* if you're getting a lot of crashes due to 'too many open files...' try `ulimit -n SOMEHIGHNUMBER`_
+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Acknowledgments

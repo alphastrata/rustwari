@@ -41,13 +41,13 @@ pub(crate) async fn assemble_full_disc(
     for r in 0..ROWMAX {
         working_vec.push(
             m.get(&(r, 0))
-                .expect(format!("failed on m:{:#?}", m).as_str())
+                .unwrap_or_else(|| panic!("failed on m:{:#?}", m))
                 .clone(),
         );
         for c in 1..COLMAX {
             working_vec.push(
                 m.get(&(r, c))
-                    .expect(format!("failed on m:{:#?}", m).as_str())
+                    .unwrap_or_else(|| panic!("failed on m:{:#?}", m))
                     .clone(),
             );
         }
@@ -57,7 +57,7 @@ pub(crate) async fn assemble_full_disc(
     concat_off_axis(range, Axis::Y, hwdt).await?;
 
     let p = std::path::Path::new(&uc.completed).join(hwdt.pretty_filename());
-    assert!(cleanup_tmp(&uc)?); //NOTE Cleanup the completed too?
+    assert!(cleanup_tmp(uc)?); //NOTE Cleanup the completed too?
 
     crate::wallpaperutils::FullDisc::new(&p)
 }

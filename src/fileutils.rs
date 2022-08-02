@@ -1,4 +1,5 @@
 use crate::user_config::Config;
+use anyhow::Error;
 use anyhow::Result;
 use log::info;
 use std::path::Path;
@@ -18,21 +19,39 @@ pub(crate) async fn check_setup(uc: &Config) -> Result<()> {
     Ok(())
 }
 // A helper to check filesize and if 0 remove it, makes a count of removed failures, tokiofetcher can use that count to refetch
-pub(crate) fn remove_failed_and_rerun() -> Result<u32, std::io::Error> {
-    let mut count = 0;
-    for entry in std::fs::read_dir("tmp")? {
-        let entry = entry?;
-        let path = entry.path();
-        if path.extension().expect("Unable to view file extension.") == "png" {
-            let metadata = path.metadata()?;
-            if metadata.len() == 0 {
-                info!("{} is 0 bytes, removing", path.display());
-                std::fs::remove_file(path)?;
-                count += 1;
+pub(crate) fn remove_failed_and_rerun(uc: &Config) -> Result<u32, Error> {
+    // let mut count = 0;
+    // for entry in std::fs::read_dir("tmp")? {
+    //     let entry = entry?;
+    //     let path = entry.path();
+    //     if path.extension().expect("Unable to view file extension.") == "png" {
+    //         let metadata = path.metadata()?;
+    //         if metadata.len() == 0 {
+    //             info!("{} is 0 bytes, removing", path.display());
+    //             std::fs::remove_file(path)?;
+    //             count += 1;
+    //         }
+    //     }
+    // }
+    // Ok(count)
+    let dir = std::fs::read_dir(&uc.tmp)?;
+    Ok(dir
+        .into_iter()
+        .filter_map(|e| {
+            let p = e.ok()?.path();
+            if p.extension()
+                .expect("Expected to be able to read file's extension.")
+                == "png"
+                && p.metadata().ok()?.len() == 0
+            {
+                info!("{} is 0 bytes, removing", p.display());
+                std::fs::remove_file(p).ok()?;
+                Some(1)
+            } else {
+                None
             }
-        }
-    }
-    Ok(count)
+        })
+        .sum::<u32>())
 }
 
 pub fn move_completed_to_backup(path: &PathBuf) -> Result<()> {

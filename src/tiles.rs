@@ -34,13 +34,16 @@ pub(crate) async fn tokio_tile_fetcher(
     hwdt: HimawariDatetime,
     client: &Client,
     handles: &Arc<Mutex<Vec<tokio::task::JoinHandle<()>>>>,
-    tmp: &String,
+    tmp: &str,
 ) {
     let client = client.clone();
-    let tmp = tmp.clone();
+    let tmp = tmp.to_owned();
     let handle = tokio::spawn(async move {
-        rt.download_image(hwdt, &client, &tmp).await.unwrap(); // figure it's ok to destroy the hwdt here?
+        rt.download_image(hwdt, &client, &tmp)
+            .await
+            .expect(&format!("Failure on:{:?}", hwdt)); // figure it's ok to destroy the hwdt here?
     });
+
     handles.lock().unwrap().push(handle);
 }
 
@@ -107,7 +110,7 @@ pub(crate) async fn fetch_full_disc(
             tokio_tile_fetcher(rt, hwdt, client, &handles, &uc.tmp).await;
         }
     }
-    if remove_failed_and_rerun()? > 0 {
+    if remove_failed_and_rerun(uc)? > 0 {
         std::thread::sleep(Duration::from_millis(250));
         fetch_full_disc(client, hwdt, uc).await?;
     }
@@ -136,7 +139,9 @@ impl LocalTile {
     /// A failed tile will be 0 bytes, a disc of failures stitched will be <3mb.
     pub(crate) async fn get_size_on_disk(&self) -> usize {
         let p = self.path_as_str();
-        let metadata = tokio::fs::metadata(p).await.unwrap();
+        let metadata = tokio::fs::metadata(p)
+            .await
+            .expect(&format!("Unable to retrieve metadata from {:?}", self.path.to_str())[..]);
         let size = metadata.len() as usize;
         if size < 200 {
             info!("WARNING:{} is {} bytes.", p, size);
@@ -181,7 +186,7 @@ impl RemoteTile {
         hwdt: HimawariDatetime,
         client: &Client,
         tmp: &String,
-    ) -> Result<()> {
+    ) -> Result<(), anyhow::Error> {
         let filename = format!(
             "{}/{}-{}-{} {:02}{:02} R{}_C{}.png",
             &tmp, hwdt.year, hwdt.month, hwdt.day, hwdt.h, hwdt.m, self.x, self.y

@@ -40,16 +40,15 @@ impl Config {
         if Path::new(&p).is_file() {
             info!("user.yml config file found!");
         }
-        info!("config not found, creating");
-        Self::create_yml()?;
+        // info!("config not found, creating");
+        // Self::create_yml()?;
         Ok(())
     }
     /// Creates the default .yml config file
     fn create_yml() -> Result<(), std::io::Error> {
-        let defaults = r"#\
-tilesdir: /media/jer/ARCHIVE/HIMAWARI_DATA/tiles/
-tmp: /media/jer/ARCHIVE/HIMAWARI_DATA/tmp/
-completed: /media/jer/ARCHIVE/HIWARI_DATA/completed/";
+        let defaults = r"tilesdir: /media/jer/ARCHIVE/HIMAWARI_DATA/tiles
+tmp: /media/jer/ARCHIVE/HIMAWARI_DATA/tmp
+completed: /media/jer/ARCHIVE/HIWARI_DATA/completed";
 
         write(USERCONFIG, defaults)?;
         info!("user's config.yml written to disk");

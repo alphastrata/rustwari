@@ -1,8 +1,10 @@
+use anyhow::Error;
 use anyhow::Result;
 use async_recursion::async_recursion;
 use log::info;
 use reqwest::Client;
 use std::collections::HashMap;
+use std::fs::DirEntry;
 use std::path::Path;
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
@@ -10,7 +12,7 @@ use std::time::Duration;
 use tokio::fs::File;
 use tokio::io::AsyncWriteExt;
 use tokio::task::JoinHandle;
-use url::{ParseError, Url};
+use url::Url;
 
 use crate::{
     fileutils::{exists, remove_failed_and_rerun},
@@ -48,26 +50,25 @@ pub(crate) async fn tokio_tile_fetcher(
 }
 
 /// Helper to return the x and y values from a given path
-pub(crate) fn get_x_y_from_filename(
-    p: PathBuf,
-    uc: &Config,
-) -> Result<(u32, u32), std::num::ParseIntError> {
-    // FIXME: These unwraps need to be optioned out.
-    let mut pbstr = p.to_str().unwrap();
-    pbstr = pbstr.strip_prefix(&uc.tmp).unwrap();
+pub(crate) fn get_x_y_from_filename(p: &DirEntry, uc: &Config) -> Result<(u32, u32), Error> {
+
+    let p = p.path();
+    let mut pbstr = p.to_str().expect("unable to get a str from provided path");
+
+    pbstr = pbstr
+        .strip_prefix(&uc.tmp)
+        .expect("unable to strip /tmp/ from Path");
 
     let x = pbstr.split(" R").collect::<Vec<_>>()[1]
         .to_string()
         .split('_')
         .collect::<Vec<_>>()[0]
-        .parse::<u32>()
-        .unwrap(); //FIXME: fix this
+        .parse::<u32>()?;
 
     let y = pbstr.split('C').collect::<Vec<_>>()[1]
         .to_string()
         .replace(".png", "")
-        .parse::<u32>()
-        .unwrap(); //FIXME: fix this
+        .parse::<u32>()?;
 
     Ok((x, y))
 }

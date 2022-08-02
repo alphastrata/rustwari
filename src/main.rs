@@ -36,10 +36,8 @@ async fn run(uc: &Config) -> Result<()> {
 
     for entry in tmpdir_contents {
         let entry = entry?;
-        let path = entry.path();
-
-        let xy: (u32, u32) = get_x_y_from_filename(path.clone(), uc)?;
-        local_tiles.push(LocalTile::new(xy.0, xy.1, path.to_path_buf()).await);
+        let xy: (u32, u32) = get_x_y_from_filename(&entry, uc)?;
+        local_tiles.push(LocalTile::new(xy.0, xy.1, entry.path()).await);
     }
 
     let tile_map = build_tile_map(local_tiles).await?;

@@ -72,13 +72,12 @@ async fn cv_concat_array(v: &Vec<LocalTile>, uc: &Config, keep_tmps: Option<bool
         range.push(cv_load_image(lt.path_as_str()).await?);
     }
 
-    core::vconcat(&range, &mut mat).unwrap();
+    core::vconcat(&range, &mut mat)?;
 
     // keep the intermediate representations on disk...
     if keep_tmps.unwrap_or(false) {
         let filename = format!("{}/{}complete.png", uc.completed, v[0].get_xy().await.0);
-        let _ = imgcodecs::imwrite(&filename, &mat, &types::VectorOfi32::new()).unwrap();
-        dbg!(&filename);
+        let _ = imgcodecs::imwrite(&filename, &mat, &types::VectorOfi32::new())?;
     }
     Ok(mat)
 }
@@ -89,11 +88,9 @@ async fn cv_concat_array(v: &Vec<LocalTile>, uc: &Config, keep_tmps: Option<bool
 /// * `hwdt` the HimawariDatetime used to create all the tiles this img will be made up of
 async fn concat_off_axis(range: Vector<Mat>, uc: &Config, hwdt: HimawariDatetime) -> Result<()> {
     let mut mat = core::Mat::default();
-    core::hconcat(&range, &mut mat).unwrap();
-    dbg!(hwdt.pretty_filename());
+    core::hconcat(&range, &mut mat)?;
     let filename = format!("{}/{}", uc.completed, hwdt.pretty_filename());
-    dbg!(&filename);
-    let _ = imgcodecs::imwrite(&filename, &mut mat, &types::VectorOfi32::new()).unwrap();
+    let _ = imgcodecs::imwrite(&filename, &mat, &types::VectorOfi32::new())?;
     Ok(())
 }
 

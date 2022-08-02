@@ -20,20 +20,6 @@ pub(crate) async fn check_setup(uc: &Config) -> Result<()> {
 }
 // A helper to check filesize and if 0 remove it, makes a count of removed failures, tokiofetcher can use that count to refetch
 pub(crate) fn remove_failed_and_rerun(uc: &Config) -> Result<u32, Error> {
-    // let mut count = 0;
-    // for entry in std::fs::read_dir("tmp")? {
-    //     let entry = entry?;
-    //     let path = entry.path();
-    //     if path.extension().expect("Unable to view file extension.") == "png" {
-    //         let metadata = path.metadata()?;
-    //         if metadata.len() == 0 {
-    //             info!("{} is 0 bytes, removing", path.display());
-    //             std::fs::remove_file(path)?;
-    //             count += 1;
-    //         }
-    //     }
-    // }
-    // Ok(count)
     let dir = std::fs::read_dir(&uc.tmp)?;
     Ok(dir
         .into_iter()
@@ -78,5 +64,16 @@ pub(crate) fn cleanup_tmp(uc: &crate::user_config::Config) -> Result<bool, std::
             std::fs::remove_file(path)?;
         }
     }
+    std::fs::read_dir(&uc.tmp)?.into_iter().for_each(|path| {
+        let pb = path.expect("unable to make PathBuf from DirEntry").path();
+        if pb
+            .extension()
+            .unwrap_or_else(|| panic!("failed to get extension from file:{:#?}", pb))
+            == "png"
+        {
+            let _ = std::fs::remove_file(pb);
+        }
+    });
+
     Ok(true)
 }

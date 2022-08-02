@@ -1,6 +1,7 @@
 use anyhow::Error;
 use anyhow::Result;
 use async_recursion::async_recursion;
+use log::error;
 use log::info;
 use reqwest::Client;
 use std::collections::HashMap;
@@ -42,7 +43,7 @@ pub async fn tokio_tile_fetcher(
     let handle = tokio::spawn(async move {
         rt.download_image(hwdt, &client, &tmp)
             .await
-            .unwrap_or_else(|_| panic!("Failure downloading:{:?}", hwdt));
+            .unwrap_or_else(|_| error!("Failure downloading:{:?}", hwdt));
     });
 
     handles.lock().unwrap().push(handle);
@@ -72,9 +73,7 @@ pub fn get_x_y_from_filename(p: &DirEntry, uc: &Config) -> Result<(u32, u32), Er
 }
 /// Builds a hashmap of LocalTiles, where the key is the x,y coordinate of the tile.
 /// The value is the file loaded into memory with imgcodecs::imread() from the opencv library.
-pub async fn build_tile_map(
-    tiles: Vec<LocalTile>,
-) -> Result<HashMap<(u32, u32), LocalTile>> {
+pub async fn build_tile_map(tiles: Vec<LocalTile>) -> Result<HashMap<(u32, u32), LocalTile>> {
     let mut m: HashMap<(u32, u32), LocalTile> = HashMap::new();
 
     for tile in tiles.into_iter() {
@@ -133,7 +132,9 @@ impl LocalTile {
         }
     }
     pub fn path_as_str(&self) -> &str {
-        self.path.to_str().unwrap() //FIXME: fix this.
+        self.path
+            .to_str()
+            .unwrap_or_else(|| panic!("{} was unable to be cast as str.", self.path.display()))
     }
     /// A failed tile will be 0 bytes, a disc of failures stitched will be <3mb.
     pub async fn get_size_on_disk(&self) -> usize {

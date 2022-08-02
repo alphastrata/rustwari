@@ -1,5 +1,7 @@
+use anyhow::Error;
 use anyhow::Result;
 use chrono::{Datelike, Timelike, Utc};
+use log::{error, info};
 use std::path::Path;
 use url::{ParseError, Url};
 
@@ -32,8 +34,9 @@ impl HimawariDatetime {
             || h > 24
             || m > 60
         {
-            println!("Invalid datetime, returning default, which is the first day of operation available in the dataset.");
-            println!("YOU ENTERED:{}/{}/{} {}:{}", year, month, day, h, m);
+            error!("Invalid datetime, returning default, which is the first day of operation available in the dataset.");
+            error!("YOU ENTERED:{}/{}/{} {}:{}", year, month, day, h, m);
+            info!("The earliest possible HimawariDatetime will be created for you.");
             return Self {
                 year: 2015,
                 month: 7,
@@ -59,25 +62,25 @@ impl HimawariDatetime {
         )
     }
     /// Helper to get a HWDT back out of an existing file, usually used on a fulldisc
-    pub fn _from_path(path: &Path) -> Self {
+    pub fn from_path(path: &Path) -> Result<Self, Error> {
         let p = path.to_str().expect("unable to parse PathBuf");
 
         // example filename : fulldisc-2022-2-3 0_30.png
         let p_split = p.split('-').collect::<Vec<&str>>();
-        let year = p_split[1].parse::<u32>().expect("unable to parse year");
-        let month = p_split[2].parse::<u32>().expect("unable to parse month");
-        let day = p_split[3].parse::<u32>().expect("unable to parse day");
+        let year = p_split[1].parse::<u32>()?;
+        let month = p_split[2].parse::<u32>()?;
+        let day = p_split[3].parse::<u32>()?;
         let h_m = p_split[4].split('_').collect::<Vec<&str>>();
-        let h = h_m[0].parse::<u32>().expect("unable to parse hour");
-        let m = h_m[1].parse::<u32>().expect("unable to parse minute");
+        let h = h_m[0].parse::<u32>()?;
+        let m = h_m[1].parse::<u32>()?;
 
-        Self {
+        Ok(Self {
             year,
             month,
             day,
             h,
             m,
-        }
+        })
     }
 
     /// Constructs a HimawariDatetime closest to your current time, minus 20 minutes.

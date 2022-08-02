@@ -20,7 +20,6 @@ use crate::{
     user_config::Config,
 };
 
-const URLBASE: &str = "https://himawari8.nict.go.jp/img/D531106/20d/550/"; //2018/08/18/161000_17_3.png";
 const ROWMAX: u32 = 20;
 const COLMAX: u32 = 20;
 
@@ -43,7 +42,7 @@ pub(crate) async fn tokio_tile_fetcher(
     let handle = tokio::spawn(async move {
         rt.download_image(hwdt, &client, &tmp)
             .await
-            .expect(&format!("Failure on:{:?}", hwdt)); // figure it's ok to destroy the hwdt here?
+            .unwrap_or_else(|_| panic!("Failure downloading:{:?}", hwdt));
     });
 
     handles.lock().unwrap().push(handle);
@@ -51,7 +50,6 @@ pub(crate) async fn tokio_tile_fetcher(
 
 /// Helper to return the x and y values from a given path
 pub(crate) fn get_x_y_from_filename(p: &DirEntry, uc: &Config) -> Result<(u32, u32), Error> {
-
     let p = p.path();
     let mut pbstr = p.to_str().expect("unable to get a str from provided path");
 
@@ -142,7 +140,8 @@ impl LocalTile {
         let p = self.path_as_str();
         let metadata = tokio::fs::metadata(p)
             .await
-            .expect(&format!("Unable to retrieve metadata from {:?}", self.path.to_str())[..]);
+            .unwrap_or_else(|_| panic!("Failure retriving metadat for:{:?}", p));
+
         let size = metadata.len() as usize;
         if size < 200 {
             info!("WARNING:{} is {} bytes.", p, size);

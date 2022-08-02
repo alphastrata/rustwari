@@ -38,10 +38,11 @@ impl Config {
     {
         info!("check_config_exits trigger");
         if Path::new(&p).is_file() {
-            info!("user.yml config file found!");
+            info!("config.yml config file found!");
+        } else {
+            info!("config not found, creating");
+            Self::create_yml()?;
         }
-        // info!("config not found, creating");
-        // Self::create_yml()?;
         Ok(())
     }
     /// Creates the default .yml config file

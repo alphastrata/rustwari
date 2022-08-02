@@ -3,19 +3,12 @@ use log::info;
 use reqwest::Client;
 use std::path::Path;
 
-mod cvutils;
-mod fileutils;
-mod himawaridt;
-mod tiles;
-mod user_config;
-mod wallpaperutils;
-
-use cvutils::assemble_full_disc;
-use fileutils::{check_setup, move_completed_to_backup};
-use himawaridt::HimawariDatetime;
-use tiles::{build_tile_map, fetch_full_disc, get_x_y_from_filename, LocalTile};
-use user_config::{Config, USERCONFIG};
-use wallpaperutils::FullDisc;
+use rustwari::cvutils::assemble_full_disc;
+use rustwari::fileutils::{check_setup, move_completed_to_backup};
+use rustwari::himawaridt::HimawariDatetime;
+use rustwari::tiles::{build_tile_map, fetch_full_disc, get_x_y_from_filename, LocalTile};
+use rustwari::user_config::{Config, USERCONFIG};
+use rustwari::wallpaperutils::FullDisc;
 
 async fn run(uc: &Config) -> Result<()> {
     let hwdt = HimawariDatetime::closest_to_now().await;
@@ -58,7 +51,6 @@ async fn main() -> Result<()> {
     let uc = Config::new_from_yaml(USERCONFIG)?;
 
     check_setup(&uc).await?;
-    dbg!(&uc);
 
     loop {
         run(&uc).await?;

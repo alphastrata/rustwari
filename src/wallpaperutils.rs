@@ -1,4 +1,5 @@
 use crate::cvutils::get_dims;
+use anyhow::Error;
 use anyhow::Result;
 use image::imageops::FilterType;
 use image::ImageFormat;
@@ -7,7 +8,7 @@ use std::path::PathBuf;
 use wallpaper::{set_from_path, set_mode};
 
 /// Representing a full, 121MP image.
-pub(crate) struct FullDisc {
+pub struct FullDisc {
     pub path: PathBuf,
     //TODO: set the screen dims based on a user's machine, then only fetch something close to
     //what'll make sense...
@@ -29,16 +30,19 @@ impl FullDisc {
         })
     }
     /// Sets the current wallpaper to whatever's stored in the path field.
-    pub(crate) fn set_this(&self) -> Result<()> {
-        let _ = set_from_path(self.path.to_str().ok()?); //NOTE i really dislike this
-                                                         //Option<_>.ok() coercion into Result<_,_> to use the ?s
+    pub fn set_this(&self) -> Result<(), Error> {
+        let _ = set_from_path(
+            self.path
+                .to_str()
+                .unwrap_or_else(|| panic!("Unable to cast Path as String.")),
+        );
         let _ = set_mode(wallpaper::Mode::Fit);
         Ok(())
     }
 
     /// When called on FullDisc it resizes the 121MP .png to a smaller jpeg
     /// Note: This method replaces the .png file (original) with the resized one.
-    pub(crate) fn resize_this(&mut self, width: i32, height: i32) -> Result<()> {
+    pub fn resize_this(&mut self, width: i32, height: i32) -> Result<()> {
         let img = image::open(&self.path)?;
         let resized = img.resize(width as u32, height as u32, FilterType::Lanczos3);
 

@@ -26,7 +26,7 @@ pub(crate) async fn cv_load_image(p: &str) -> Result<core::Mat> {
 /// #Arguments:
 /// * `m: HashMap<(u32,u32), LocalTile>`
 /// * `hwdt` the HimawariDatetime used to create all the tiles the disc will be made up of
-pub(crate) async fn assemble_full_disc(
+pub async fn assemble_full_disc(
     m: HashMap<(u32, u32), LocalTile>,
     hwdt: HimawariDatetime,
     uc: &Config,

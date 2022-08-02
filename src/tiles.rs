@@ -30,7 +30,7 @@ const COLMAX: u32 = 20;
 /// * `hmtd` - a valid HimawariDatetime
 /// * `client` - Client
 /// * `handles` a Vec<JoinHandle<Result<()>>>
-pub(crate) async fn tokio_tile_fetcher(
+pub async fn tokio_tile_fetcher(
     rt: RemoteTile,
     hwdt: HimawariDatetime,
     client: &Client,
@@ -49,7 +49,7 @@ pub(crate) async fn tokio_tile_fetcher(
 }
 
 /// Helper to return the x and y values from a given path
-pub(crate) fn get_x_y_from_filename(p: &DirEntry, uc: &Config) -> Result<(u32, u32), Error> {
+pub fn get_x_y_from_filename(p: &DirEntry, uc: &Config) -> Result<(u32, u32), Error> {
     let p = p.path();
     let mut pbstr = p.to_str().expect("unable to get a str from provided path");
 
@@ -72,7 +72,7 @@ pub(crate) fn get_x_y_from_filename(p: &DirEntry, uc: &Config) -> Result<(u32, u
 }
 /// Builds a hashmap of LocalTiles, where the key is the x,y coordinate of the tile.
 /// The value is the file loaded into memory with imgcodecs::imread() from the opencv library.
-pub(crate) async fn build_tile_map(
+pub async fn build_tile_map(
     tiles: Vec<LocalTile>,
 ) -> Result<HashMap<(u32, u32), LocalTile>> {
     let mut m: HashMap<(u32, u32), LocalTile> = HashMap::new();
@@ -95,7 +95,7 @@ pub(crate) async fn build_tile_map(
 /// * `client` - Client
 /// * `hmtd` - a valid HimawariDatetime
 #[async_recursion]
-pub(crate) async fn fetch_full_disc(
+pub async fn fetch_full_disc(
     client: &Client,
     hwdt: HimawariDatetime,
     uc: &Config,
@@ -117,14 +117,14 @@ pub(crate) async fn fetch_full_disc(
 }
 /// Identical to the RemoteTile except that this one exists on disk.
 #[derive(Debug, Clone)]
-pub(crate) struct LocalTile {
+pub struct LocalTile {
     pub x: u32,
     pub y: u32,
     pub path: PathBuf,
 }
 
 impl LocalTile {
-    pub(crate) async fn new(x: u32, y: u32, path: PathBuf) -> Self {
+    pub async fn new(x: u32, y: u32, path: PathBuf) -> Self {
         if exists(path.clone()).await {
             Self { x, y, path }
         } else {
@@ -132,11 +132,11 @@ impl LocalTile {
             panic!("{} Tile does not exist", path.to_str().unwrap());
         }
     }
-    pub(crate) fn path_as_str(&self) -> &str {
+    pub fn path_as_str(&self) -> &str {
         self.path.to_str().unwrap() //FIXME: fix this.
     }
     /// A failed tile will be 0 bytes, a disc of failures stitched will be <3mb.
-    pub(crate) async fn get_size_on_disk(&self) -> usize {
+    pub async fn get_size_on_disk(&self) -> usize {
         let p = self.path_as_str();
         let metadata = tokio::fs::metadata(p)
             .await
@@ -149,13 +149,13 @@ impl LocalTile {
         size
     }
     /// A getter for the x, and y values representing the tile's location.
-    pub(crate) async fn get_xy(&self) -> (u32, u32) {
+    pub async fn get_xy(&self) -> (u32, u32) {
         (self.x, self.y)
     }
 }
 /// A struct to hold the data for a single tile, prior to fetching it from the dataset
 #[derive(Debug, PartialEq, Eq, Clone)]
-pub(crate) struct RemoteTile {
+pub struct RemoteTile {
     pub x: u32,
     pub y: u32,
     pub url: Url,
@@ -165,7 +165,7 @@ impl RemoteTile {
     /// #Arguments:
     /// * `x` - x coordinate of the tile
     /// * `y` - y coordinate of the tile
-    pub(crate) async fn new(x: u32, y: u32, url: Url) -> Self {
+    pub async fn new(x: u32, y: u32, url: Url) -> Self {
         if x <= 19 && y <= 19 {
             Self { x, y, url }
         } else {
@@ -181,7 +181,7 @@ impl RemoteTile {
     /// * `hmtd` - a HimawariDatetime struct
     /// * `client` - Client
     /// it produces files that look like this: `2018-08-18 161000_17_3.png`
-    pub(crate) async fn download_image(
+    pub async fn download_image(
         &self,
         hwdt: HimawariDatetime,
         client: &Client,

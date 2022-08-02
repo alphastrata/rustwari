@@ -9,7 +9,7 @@ use std::path::PathBuf;
 const BACKUP: &str = "/media/jer/ARCHIVE/HIMAWARI_DATA";
 
 // check that the completed and tmp directories exist, and if not create them.
-pub(crate) async fn check_setup(uc: &Config) -> Result<()> {
+pub async fn check_setup(uc: &Config) -> Result<()> {
     if !exists(Path::new(&uc.completed).to_path_buf()).await {
         std::fs::create_dir_all(&uc.completed)?;
     }
@@ -19,7 +19,7 @@ pub(crate) async fn check_setup(uc: &Config) -> Result<()> {
     Ok(())
 }
 // A helper to check filesize and if 0 remove it, makes a count of removed failures, tokiofetcher can use that count to refetch
-pub(crate) fn remove_failed_and_rerun(uc: &Config) -> Result<u32, Error> {
+pub fn remove_failed_and_rerun(uc: &Config) -> Result<u32, Error> {
     let dir = std::fs::read_dir(&uc.tmp)?;
     Ok(dir
         .into_iter()
@@ -49,14 +49,14 @@ pub fn move_completed_to_backup(path: &PathBuf) -> Result<()> {
     Ok(())
 }
 /// Returns true if the file/directory exists
-pub(crate) async fn exists(path: PathBuf) -> bool {
+pub async fn exists(path: PathBuf) -> bool {
     if tokio::fs::metadata(&path).await.is_ok() {
         return true;
     }
     false
 }
 // Old tiles, or intermediate concats should be cleaned up
-pub(crate) fn cleanup_tmp(uc: &crate::user_config::Config) -> Result<bool, std::io::Error> {
+pub fn cleanup_tmp(uc: &crate::user_config::Config) -> Result<bool, std::io::Error> {
     //TODO: convert to filtermap
     for entry in std::fs::read_dir(&uc.tmp)? {
         let path = entry?.path();

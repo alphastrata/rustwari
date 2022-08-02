@@ -1,0 +1,2136 @@
+
+warning: unused manifest key: package.author
+warning: unused manifest key: package.opt-level
+warning: unused import: `ParseError`
+  --> src/tiles.rs:13:11
+   |
+13 | use url::{ParseError, Url};
+   |           ^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: constant `URLBASE` is never used
+  --> src/tiles.rs:21:7
+   |
+21 | const URLBASE: &str = "https://himawari8.nict.go.jp/img/D531106/20d/550/"; //2018/08/18/161000_17_3.png";
+   |       ^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: fields `height`, `width` and `size` are never read
+  --> src/wallpaperutils.rs:13:16
+   |
+10 | pub(crate) struct FullDisc {
+   |                   -------- fields in this struct
+...
+13 |     pub(crate) height: i32,
+   |                ^^^^^^
+14 |     pub(crate) width: i32,
+   |                ^^^^^
+15 |     pub(crate) size: u64, // NOTE: a daytime image is almos 150mb, the nightime images can be as little as 20mb.
+   |                ^^^^
+
+warning: `rustwari` (bin "rustwari") generated 3 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target/debug/rustwari`
+[src/main.rs:61] &uc = Config {
+    tilesdir: "/media/jer/ARCHIVE/HIMAWARI_DATA/tiles",
+    completed: "/media/jer/ARCHIVE/HIWARI_DATA/completed",
+    tmp: "/media/jer/ARCHIVE/HIMAWARI_DATA/tmp",
+}
+thread 'thread 'tokio-runtime-workertokio-runtime-worker' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_1_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ', src/tiles.rssrc/tiles.rs::4444::1414
+thread '
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_0_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'thread 'thread 'tokio-runtime-workertokio-runtime-workertokio-runtime-worker' panicked at '' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ', thread '', src/tiles.rssrc/tiles.rstokio-runtime-workersrc/tiles.rs::' panicked at ':4444Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44::', :1414src/tiles.rs14
+
+:
+44:14
+thread 'thread 'tokio-runtime-workertokio-runtime-worker' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ', src/tiles.rssrc/tiles.rs::4444::1414
+
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'thread 'tokio-runtime-workertokio-runtime-worker' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_1_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ', src/tiles.rssrc/tiles.rs::4444::1414
+
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', thread 'src/tiles.rstokio-runtime-worker:' panicked at '44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 14src/tiles.rs
+thread ':tokio-runtime-worker44' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '14', tokio-runtime-worker
+src/tiles.rsthread '' panicked at ':tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44' panicked at '', :Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledsrc/tiles.rs14', :
+src/tiles.rs44thread '::tokio-runtime-worker4414' panicked at ':
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14', 
+src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_0_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'thread 'tokio-runtime-workertokio-runtime-worker' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '', tokio-runtime-worker', tokio-runtime-workersrc/tiles.rs' panicked at 'src/tiles.rs' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44', 44', :src/tiles.rs:src/tiles.rs14:14:
+44
+thread '44:14tokio-runtime-worker:
+' panicked at 'thread '14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread 'thread 'thread 'thread 'thread 'thread 'thread 'tokio-runtime-workerthread 'thread 'thread 'tokio-runtime-workerthread 'thread 'tokio-runtime-worker
+', tokio-runtime-workertokio-runtime-workertokio-runtime-workertokio-runtime-workertokio-runtime-workertokio-runtime-worker' panicked at 'tokio-runtime-workertokio-runtime-worker' panicked at 'tokio-runtime-workertokio-runtime-worker' panicked at 'thread 'src/tiles.rsthread 'thread 'thread '' panicked at '' panicked at '' panicked at '' panicked at '' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_1_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_1_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker:tokio-runtime-workertokio-runtime-workertokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ' panicked at '44' panicked at '' panicked at '' panicked at '', thread '', ', ', ', ', src/tiles.rs', thread '', src/tiles.rs', ', src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledsrc/tiles.rsthread 'tokio-runtime-workersrc/tiles.rssrc/tiles.rssrc/tiles.rssrc/tiles.rssrc/tiles.rs:src/tiles.rstokio-runtime-workersrc/tiles.rsthread ':src/tiles.rssrc/tiles.rs:', 14', thread 'tokio-runtime-worker', ', :tokio-runtime-worker' panicked at 'thread ':::::44:' panicked at ':tokio-runtime-worker44::44src/tiles.rs
+src/tiles.rstokio-runtime-worker' panicked at 'src/tiles.rssrc/tiles.rs44' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker4444444444:44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '44' panicked at ':4444:::' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread ':::Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ' panicked at 'thread ':::::14:', tokio-runtime-worker:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14::144444Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', thread 'tokio-runtime-worker444414', src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker1414141414
+14src/tiles.rs' panicked at '14', 
+1414
+::', src/tiles.rstokio-runtime-worker' panicked at '::
+src/tiles.rs:', ' panicked at '
+
+
+
+
+
+:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+thread 'src/tiles.rs
+
+1414src/tiles.rs:' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled1414:44src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44', tokio-runtime-worker:
+
+:44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', 
+
+44::', :src/tiles.rs' panicked at '4444:', src/tiles.rs:1444src/tiles.rs14:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled::14src/tiles.rs:14
+::
+44', 1414
+:44thread '
+1444:thread 'src/tiles.rs
+
+44:tokio-runtime-workerthread '
+:14tokio-runtime-worker::14' panicked at 'tokio-runtime-worker14
+' panicked at '4414
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:
+', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_9_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', 14src/tiles.rs', src/tiles.rs
+:src/tiles.rs:44:44:44:14thread ':14
+tokio-runtime-worker14
+' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rsthread ':tokio-runtime-worker44' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14', 
+thread 'src/tiles.rstokio-runtime-worker:' panicked at '44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_1_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 14src/tiles.rs
+:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '', tokio-runtime-workersrc/tiles.rs' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44', :src/tiles.rs14:
+44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44thread ':tokio-runtime-worker14' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:thread '44tokio-runtime-workerthread ':' panicked at 'tokio-runtime-worker14thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at '
+tokio-runtime-worker', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at 'src/tiles.rs', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:src/tiles.rs', 44:src/tiles.rs:44:14:44
+14:
+14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44thread ':tokio-runtime-worker14' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '', tokio-runtime-workersrc/tiles.rs' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44', :src/tiles.rs14:
+44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', thread 'src/tiles.rstokio-runtime-worker:' panicked at '44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:thread '', 14tokio-runtime-workersrc/tiles.rsthread '
+' panicked at ':tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44' panicked at 'thread '', :Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-workersrc/tiles.rs14', ' panicked at ':
+src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44:', :44src/tiles.rs14::
+1444thread '
+:thread 'tokio-runtime-workerthread '14tokio-runtime-worker' panicked at 'tokio-runtime-worker
+' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rsthread '', src/tiles.rs:tokio-runtime-workersrc/tiles.rs:44' panicked at ':44:thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44:14tokio-runtime-worker', :14
+thread '' panicked at 'src/tiles.rs14
+tokio-runtime-workerthread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:
+' panicked at 'tokio-runtime-worker', 44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at 'src/tiles.rs:', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:14src/tiles.rs', 44
+:src/tiles.rs:44:14:44
+14:thread '
+14tokio-runtime-worker
+' panicked at 'thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker', ' panicked at 'src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 44src/tiles.rs::1444
+:thread '14tokio-runtime-worker
+' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44thread ':tokio-runtime-worker14' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_11_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'thread 'tokio-runtime-workertokio-runtime-worker' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ', src/tiles.rssrc/tiles.rs::4444::14thread '14
+tokio-runtime-worker
+' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_10_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', thread 'src/tiles.rstokio-runtime-worker:' panicked at '44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 14src/tiles.rs
+:thread '44tokio-runtime-workerthread ':' panicked at 'tokio-runtime-worker14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_3_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at 'thread '
+', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-workersrc/tiles.rs', ' panicked at ':src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44:', :44src/tiles.rs14::
+1444
+:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '', tokio-runtime-workersrc/tiles.rs' panicked at 'thread ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker44', ' panicked at ':thread 'src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14tokio-runtime-worker:', 
+' panicked at '44src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled::thread '', 1444tokio-runtime-workersrc/tiles.rs
+:' panicked at ':14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44
+', :src/tiles.rs14thread ':
+tokio-runtime-worker44thread '' panicked at ':tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '14' panicked at '', thread 'tokio-runtime-worker
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledsrc/tiles.rsthread 'tokio-runtime-worker' panicked at '', :tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledsrc/tiles.rs44' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ::Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs4414', src/tiles.rs::
+src/tiles.rs:4414thread ':44:
+tokio-runtime-worker44:14' panicked at ':14
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14
+', 
+src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rsthread ':tokio-runtime-worker44' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '14', tokio-runtime-worker
+src/tiles.rs' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44', :src/tiles.rs14:44
+:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-workerthread '' panicked at 'tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at '', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledsrc/tiles.rs', :src/tiles.rs44::4414:
+14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44thread ':tokio-runtime-worker14' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_12_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rsthread ':tokio-runtime-worker44thread '' panicked at ':tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14' panicked at '', 
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread 'src/tiles.rs', tokio-runtime-worker:src/tiles.rs' panicked at '44:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:44', 14:src/tiles.rs
+14:
+44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44thread ':tokio-runtime-worker14' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44thread ':tokio-runtime-worker14' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_13_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker', ' panicked at 'src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 44src/tiles.rsthread '::tokio-runtime-workerthread '1444' panicked at 'tokio-runtime-worker
+:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at 'thread '14', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-workerthread '
+src/tiles.rs:44:14
+', ' panicked at 'tokio-runtime-workerthread 'thread 'src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at 'tokio-runtime-workertokio-runtime-worker:thread '', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at '' panicked at '44tokio-runtime-workersrc/tiles.rs', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_2_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:' panicked at ':src/tiles.rs', ', 14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44thread ':src/tiles.rssrc/tiles.rs
+', thread ':tokio-runtime-worker44::src/tiles.rstokio-runtime-worker14' panicked at ':thread '4444:thread '' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14tokio-runtime-worker::44tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', 
+' panicked at '1414:' panicked at '', src/tiles.rsthread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+
+14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledsrc/tiles.rs:tokio-runtime-worker', 
+', thread ':44' panicked at 'src/tiles.rssrc/tiles.rstokio-runtime-worker44:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled::' panicked at ':14', 4444Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '14
+src/tiles.rs::', thread 'tokio-runtime-worker
+thread ':1414src/tiles.rstokio-runtime-worker' panicked at 'tokio-runtime-worker44
+
+:' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at ':44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14:', src/tiles.rstokio-runtime-worker', 
+14src/tiles.rs:' panicked at 'src/tiles.rs
+:44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:thread '44:', 44tokio-runtime-worker:14src/tiles.rs:' panicked at '14
+:thread '14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+44tokio-runtime-worker
+', :' panicked at 'src/tiles.rs14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:
+', 44src/tiles.rs::1444
+:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44thread ':tokio-runtime-worker14' panicked at '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'thread 'tokio-runtime-workertokio-runtime-workerthread '' panicked at '' panicked at 'tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at '', ', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledsrc/tiles.rssrc/tiles.rs', thread '::src/tiles.rstokio-runtime-worker4444:' panicked at '::44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled1414:', 
+
+14src/tiles.rsthread '
+:tokio-runtime-workerthread '44' panicked at 'tokio-runtime-worker:Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at '14', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+src/tiles.rs', :src/tiles.rs44::4414:
+14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'thread 'tokio-runtime-workertokio-runtime-worker' panicked at '' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ', src/tiles.rssrc/tiles.rs::44thread '44:tokio-runtime-worker:14' panicked at '14
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+thread '', tokio-runtime-workersrc/tiles.rs' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44', :src/tiles.rs14:
+44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:thread '44tokio-runtime-worker:' panicked at '14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14thread '
+tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker', ' panicked at 'src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 44:src/tiles.rs14thread ':
+tokio-runtime-worker44' panicked at 'thread ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker14', ' panicked at '
+src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread ':', tokio-runtime-worker44src/tiles.rs' panicked at '::thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled1444tokio-runtime-worker', 
+:' panicked at 'src/tiles.rsthread '14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:thread 'tokio-runtime-worker
+', 44tokio-runtime-worker' panicked at 'thread 'src/tiles.rs:' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker:14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_14_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', ' panicked at '44
+', src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:src/tiles.rs:', 14thread ':44src/tiles.rs
+tokio-runtime-worker44::' panicked at ':14thread '44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14
+tokio-runtime-worker:', 
+' panicked at '14src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+:', 44src/tiles.rs::1444
+:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rsthread ':tokio-runtime-worker44' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14', 
+src/tiles.rs:44:thread '14tokio-runtime-worker
+' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_4_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', thread 'src/tiles.rstokio-runtime-worker:' panicked at '44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_15_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 14src/tiles.rs
+:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '', tokio-runtime-workersrc/tiles.rsthread '' panicked at ':tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44' panicked at '', :Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledsrc/tiles.rs14', :
+src/tiles.rs44::4414:
+thread '14tokio-runtime-worker
+' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_5_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44thread ':tokio-runtime-worker14' panicked at 'thread '
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker', ' panicked at 'src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 44src/tiles.rs::1444
+:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rsthread ':tokio-runtime-worker44' panicked at 'thread ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker14thread '', ' panicked at '
+tokio-runtime-workersrc/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled' panicked at ':', Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44src/tiles.rs', ::src/tiles.rs1444:
+thread ':44tokio-runtime-worker14:' panicked at '
+14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+', thread 'src/tiles.rstokio-runtime-worker:' panicked at '44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:', 14thread 'src/tiles.rs
+tokio-runtime-worker:' panicked at 'thread '44Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-worker:', ' panicked at '14thread 'src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+tokio-runtime-worker:', ' panicked at '44src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled::thread '', 1444tokio-runtime-workersrc/tiles.rs
+:thread '' panicked at ':14tokio-runtime-workerFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44
+' panicked at 'thread '', :Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledtokio-runtime-workersrc/tiles.rs14', ' panicked at ':
+src/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '44:', tokio-runtime-worker:44src/tiles.rs' panicked at '14thread '::Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_16_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled
+tokio-runtime-worker1444thread '', ' panicked at '
+:tokio-runtime-workersrc/tiles.rsFailure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_10.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled14' panicked at ':', 
+thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44src/tiles.rstokio-runtime-worker', ::' panicked at 'src/tiles.rs1444thread 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_0.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:
+:tokio-runtime-worker', 4414' panicked at 'src/tiles.rs:
+Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled:14thread '', 44
+tokio-runtime-workersrc/tiles.rs:' panicked at ':14Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_13.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44
+', :src/tiles.rs14:
+44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelledthread '', tokio-runtime-workersrc/tiles.rs' panicked at ':Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_15.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled44', :src/tiles.rs14:
+44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_6_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_17_2.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_9.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_11.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_19.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_8.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_12.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_1.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_14.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_7_4.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_6.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_17.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_7.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_18_18.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_16.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_8_5.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+thread 'tokio-runtime-worker' panicked at 'Failure on:HimawariDatetime { year: 2022, month: 8, day: 2, h: 6, m: 30 }: error sending request for url (https://himawari8.nict.go.jp/img/D531106/20d/550/2022/08/02/063000_19_3.png): error trying to connect: dns error: cancelled
+
+Caused by:
+    0: error trying to connect: dns error: cancelled
+    1: dns error: cancelled
+    2: cancelled', src/tiles.rs:44:14
+Error: No such file or directory (os error 2)

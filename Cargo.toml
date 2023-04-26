@@ -1,0 +1,49 @@
+[package]
+name = "rustwari"
+version = "0.1.0"
+edition = "2021"
+author = "jer <alphastrata@gmail.com"
+description = """
+Rustwari, this app gets the most recent image available from the Himawari8 dataset, and, sets it as your wallpaper. (after resizing it a little bit...).
+
+Himawari8 is a Japanese satellite for weather monitoring, it takes an image of the full earth's disc every ten minutes, and has done so since 2015. 
+The images are distributed are 550 by 550px .pngs of which there are a whopping 400.
+
+When you stitch all 400 images together to make a full disc you get an absolute feast for the eyes at 11000 by 11000px, or a 121MP image.
+"""
+opt-level = 3
+keywords = ["wallpaper", "satellite", "image", "earth", "async"]
+publish = true
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/alphastrata/rustwari"
+repository = "https://github.com/alphastrata/rustwari"
+categories = ["command-line-utilities"]
+
+[[bin]]
+name = "rustwari"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0.68"
+async-recursion = "1.0.0"
+async-std = "1.12.0"
+bytes = "1.3.0"
+chrono = "0.4.23"
+clap = { version = "4.0.32", features = ["derive"] }
+fern = "0.6.1"
+futures = "0.3.28"
+image = "0.24.5"
+kdam = { version = "0.3.0", features = ["gradient", "template"] }
+log = "0.4.17"
+open = "3.2.0"
+os_info = "3.5.1"
+reqwest = "0.11.13"
+serde = { version = "1.0.152", features = ["derive"] }
+serde_yaml = "0.9.16"
+tokio = { version = "1.24.1", features = ["full"] }
+url = "2.3.1"
+wallpaper = "3.2.0"
+
+[profile.dev.package."*"]
+opt-level = 3

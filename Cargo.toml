@@ -11,11 +11,14 @@ The images are distributed are 550 by 550px .pngs of which there are a whopping 
 
 When you stitch all 400 images together to make a full disc you get an absolute feast for the eyes at 11000 by 11000px, or a 121MP image.
 """
+
 opt-level = 3
 keywords = ["wallpaper", "satellite", "image", "earth", "async"]
+
 publish = true
 license = "MIT"
 readme = "README.md"
+
 homepage = "https://github.com/alphastrata/rustwari"
 repository = "https://github.com/alphastrata/rustwari"
 categories = ["command-line-utilities"]

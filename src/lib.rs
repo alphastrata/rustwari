@@ -1,3 +1,7 @@
+//!
+//! if you wanted to use this as a library it'd probs work..
+//!
+
 pub mod cli;
 pub mod cvutils;
 pub mod fileutils;

@@ -9,7 +9,7 @@ use log::{debug, error};
 use reqwest::{Client, Url};
 use std::sync::{Arc, Mutex};
 use tokio::{sync::mpsc::Sender, task::JoinHandle};
-use url::ParseError;
+
 
 /// Use the [`tokio`] runtime to fetch tiles in green threads.
 /// Useful for getting mutiple tiles at once, use [`download_image`] for one offs.

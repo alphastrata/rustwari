@@ -183,7 +183,7 @@ mod tests {
         let (cli, client, uc, (tx, rx)) = setup();
 
         let oneshot_str = "2022-09-21 00:10";
-        let hwdt = NaiveDateTime::parse_from_str(&oneshot_str, "%Y-%m-%d %H:%M")
+        let hwdt = NaiveDateTime::parse_from_str(oneshot_str, "%Y-%m-%d %H:%M")
             .unwrap_or_else(|e| panic!("{e:#?}\n{oneshot_str}"));
 
         let handles = fetch_full_disc(&client, hwdt.into(), tx).await.unwrap();

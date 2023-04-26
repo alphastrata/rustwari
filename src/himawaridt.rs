@@ -5,7 +5,7 @@ use chrono::{Datelike, Timelike, Utc};
 use log::debug;
 use log::{error, warn};
 use std::path::Path;
-use url::{ParseError, Url};
+use url::{Url};
 
 const URLBASE: &str = r#"https://himawari8.nict.go.jp/img/D531106/20d/550/"#;
 

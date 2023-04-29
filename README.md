@@ -59,12 +59,24 @@ Usage: rustwari [OPTIONS]
 Options:
   -q, --quiet                          Enjoy a silent app with nothing more than a progressbar
   -v, --verbose                        Not reccomended unless developing
-  -o, --open                           <WIP>Open the image after completing it's retrival
-  -o, --oneshot <ONESHOT>              <WIP>Get one, and only one specific image from Himawari8's dataset. You must use the DDMMYYYY HHMMSS format, for example: rustwari --oneshot 18082018 090000 #would be 9am on the 18th Aug 2018
+  --open                           Open the image after completing it's retrival, always run on oneshot.
+  --oneshot <ONESHOT>              Get one, and only one specific image from Himawari8's dataset. You must use the DDMMYYYY HHMMSS format, for example: rustwari --oneshot "2018-08-18 09:00"
+  #would be 9am on the 18th Aug 2018
   -h, --help                           Print help
   -V, --version                        Print version
 
 ```
+
+So, for a oneshot (which automatically wil try to open the downloaded image)
+
+```bash
+rustwari --oneshot "2018-08-18 11:00"
+```
+
+If you're running in a cron job or something:
+`rustwari -q`
+if you're getting errors try:
+`rustwari -v` #you can also check the `.log` file it makes.
 
 > Anything marked with <WIP> is a work in progress/Yet to be implemented.
 

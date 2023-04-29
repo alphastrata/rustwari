@@ -22,12 +22,12 @@ pub struct Cli {
     #[arg(short, long)]
     pub config_file: Option<String>,
 
-    /// <WIP>Resize the image after processing, default is false.
+    /// Resize the image after processing, default is false.
     #[arg(short, long, default_value_t = false)]
     pub resize: bool,
 
-    /// <WIP>Open the image after completing it's retrival.
-    #[arg(short, long, default_value_t = false)]
+    /// Open the image after completing it's retrival.
+    #[arg(long, default_value_t = false)]
     pub open: bool,
 
     /// Get the entry for YYYY-MM-DD HH:MM, note you'll need to wrap it all in ' or "s

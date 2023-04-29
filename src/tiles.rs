@@ -5,11 +5,10 @@ use anyhow::Result;
 use async_recursion::async_recursion;
 use bytes::Bytes;
 use image::DynamicImage;
-use log::{debug, error};
+use log::error;
 use reqwest::{Client, Url};
 use std::sync::{Arc, Mutex};
 use tokio::{sync::mpsc::Sender, task::JoinHandle};
-
 
 /// Use the [`tokio`] runtime to fetch tiles in green threads.
 /// Useful for getting mutiple tiles at once, use [`download_image`] for one offs.
@@ -19,27 +18,21 @@ pub async fn tokio_tile_fetcher(
     handles: &Arc<Mutex<Vec<tokio::task::JoinHandle<()>>>>,
     tx: Sender<(Bytes, RemoteTile)>,
 ) -> Result<(), reqwest::Error> {
-    let client = client.clone();
+    let client_c = client.clone();
 
     let handle = tokio::spawn(async move {
-        match tx
-            .send((
-                rt.download_image(&client).await.unwrap_or_else(|e| {
-                    debug!(
-                        "Unexpected failure in downloading {:?}\n{e:#?}",
-                        rt.url.as_str()
-                    );
-                    panic!(
-                        "Unexpected failure in downloading {:?}\n{e:#?}",
-                        rt.url.as_str()
-                    );
-                }),
-                rt,
-            ))
-            .await
-        {
-            Ok(_) => {}
-            Err(e) => error!("{}", e),
+        match rt.download_image(&client_c).await {
+            Ok(it) => {
+                tx.send((it, rt)).await.unwrap();
+            }
+            Err(err) => loop {
+                // Keep spamming till we get it..
+                if let Ok(it) = rt.download_image(&client_c).await {
+                    tx.send((it, rt)).await.unwrap();
+                    break;
+                }
+                error!("{}", err);
+            },
         }
     });
 
@@ -47,27 +40,6 @@ pub async fn tokio_tile_fetcher(
 
     Ok(())
 }
-
-/// A helper to fetch an entire disc's worth of tiles.
-/// Note: This fetch is self-recursive, so it will check that all 400 tiles are present, and, if not rerun the fetch.
-// #[async_recursion]
-// pub async fn fetch_full_disc(
-//     client: &Client,
-//     hwdt: HimawariDatetime,
-//     tx: Sender<(Bytes, RemoteTile)>,
-// ) -> Result<Arc<Mutex<Vec<JoinHandle<()>>>>> {
-//     let handles = Arc::new(Mutex::new(Vec::new()));
-
-//     for x in 0..ROWMAX {
-//         for y in 0..COLMAX {
-//             let url = hwdt.get_url(x, y).await?;
-//             let rt = RemoteTile::new(x, y, url).await;
-//             tokio_tile_fetcher(rt, client, &handles, tx.clone()).await?;
-//         }
-//     }
-
-//     Ok(handles)
-// }
 
 #[async_recursion]
 pub async fn fetch_full_disc(
@@ -96,23 +68,7 @@ pub async fn fetch_full_disc(
 
     Ok(handles)
 }
-#[deprecated] // we no longer keep any intermediary files on disk.
-/// Identical to the [`RemoteTile`] except that this one exists on disk.
-#[derive(Debug, Clone)]
-pub struct LocalTile {
-    pub x: u32,
-    pub y: u32,
-    pub bytes: Option<DynamicImage>,
-}
-
-#[deprecated]
-impl LocalTile {
-    /// A getter for the x, and y values representing the tile's location.
-    pub fn xy(&self) -> (u32, u32) {
-        (self.x, self.y)
-    }
-}
-/// Creates an Image from Bytes!
+/// Creates an Image from [`Bytes`]!
 pub(crate) fn img_from(b: Bytes) -> DynamicImage {
     image::load_from_memory(&b).unwrap() //TODO: fix this, error handling.
 }

@@ -4,9 +4,9 @@ use anyhow::Result;
 use chrono::NaiveDateTime;
 use log::debug;
 use open::that;
+use reqwest::Client;
 use tokio::sync::mpsc;
 
-use reqwest::Client;
 use rustwari::cli::Cli;
 use rustwari::cvutils::assemble_full_disc;
 use rustwari::fileutils::{check_setup, move_completed_to_backup};
@@ -83,8 +83,7 @@ async fn main() -> Result<()> {
 
 async fn run_oneshot(client: &Client, cli: &Cli, uc: &Config) -> Result<()> {
     if let Some(oneshot_str) = cli.oneshot.clone() {
-        let hwdt = NaiveDateTime::parse_from_str(&oneshot_str, "%Y-%m-%d %H:%M")
-            .unwrap_or_else(|e| panic!("{e:#?}\n{oneshot_str}"));
+        let hwdt = NaiveDateTime::parse_from_str(&oneshot_str, "%Y-%m-%d %H:%M").unwrap(); //_or_else(|e| panic!("{e:#?}\n{oneshot_str}"));
 
         let (tx, rx) = mpsc::channel(400);
 
@@ -178,6 +177,7 @@ mod tests {
         eprintln!("Elapsed: {}s", t1.elapsed().as_secs_f64());
     }
 
+    #[ignore] // This test requres pre-existing data.
     #[tokio::test]
     async fn oneshot_mode() {
         let (cli, client, uc, (tx, rx)) = setup();

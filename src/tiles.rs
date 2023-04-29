@@ -25,9 +25,14 @@ pub async fn tokio_tile_fetcher(
             Ok(it) => {
                 tx.send((it, rt)).await.unwrap();
             }
-            Err(err) => {
-                error!("{:?}", err);
-            }
+            Err(err) => loop {
+                // Keep spamming till we get it..
+                if let Ok(it) = rt.download_image(&client_c).await {
+                    tx.send((it, rt)).await.unwrap();
+                    break;
+                }
+                error!("{}", err);
+            },
         }
     });
 
@@ -35,27 +40,6 @@ pub async fn tokio_tile_fetcher(
 
     Ok(())
 }
-
-/// A helper to fetch an entire disc's worth of tiles.
-/// Note: This fetch is self-recursive, so it will check that all 400 tiles are present, and, if not rerun the fetch.
-// #[async_recursion]
-// pub async fn fetch_full_disc(
-//     client: &Client,
-//     hwdt: HimawariDatetime,
-//     tx: Sender<(Bytes, RemoteTile)>,
-// ) -> Result<Arc<Mutex<Vec<JoinHandle<()>>>>> {
-//     let handles = Arc::new(Mutex::new(Vec::new()));
-
-//     for x in 0..ROWMAX {
-//         for y in 0..COLMAX {
-//             let url = hwdt.get_url(x, y).await?;
-//             let rt = RemoteTile::new(x, y, url).await;
-//             tokio_tile_fetcher(rt, client, &handles, tx.clone()).await?;
-//         }
-//     }
-
-//     Ok(handles)
-// }
 
 #[async_recursion]
 pub async fn fetch_full_disc(
@@ -84,7 +68,7 @@ pub async fn fetch_full_disc(
 
     Ok(handles)
 }
-/// Creates an Image from Bytes!
+/// Creates an Image from [`Bytes`]!
 pub(crate) fn img_from(b: Bytes) -> DynamicImage {
     image::load_from_memory(&b).unwrap() //TODO: fix this, error handling.
 }

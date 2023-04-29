@@ -83,8 +83,7 @@ async fn main() -> Result<()> {
 
 async fn run_oneshot(client: &Client, cli: &Cli, uc: &Config) -> Result<()> {
     if let Some(oneshot_str) = cli.oneshot.clone() {
-        let hwdt = NaiveDateTime::parse_from_str(&oneshot_str, "%Y-%m-%d %H:%M")
-            .unwrap_or_else(|e| panic!("{e:#?}\n{oneshot_str}"));
+        let hwdt = NaiveDateTime::parse_from_str(&oneshot_str, "%Y-%m-%d %H:%M").unwrap(); //_or_else(|e| panic!("{e:#?}\n{oneshot_str}"));
 
         let (tx, rx) = mpsc::channel(400);
 

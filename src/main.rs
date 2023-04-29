@@ -4,9 +4,9 @@ use anyhow::Result;
 use chrono::NaiveDateTime;
 use log::debug;
 use open::that;
+use reqwest::Client;
 use tokio::sync::mpsc;
 
-use reqwest::Client;
 use rustwari::cli::Cli;
 use rustwari::cvutils::assemble_full_disc;
 use rustwari::fileutils::{check_setup, move_completed_to_backup};
@@ -178,6 +178,7 @@ mod tests {
         eprintln!("Elapsed: {}s", t1.elapsed().as_secs_f64());
     }
 
+    #[ignore] // This test requres pre-existing data.
     #[tokio::test]
     async fn oneshot_mode() {
         let (cli, client, uc, (tx, rx)) = setup();

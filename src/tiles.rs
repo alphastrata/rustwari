@@ -5,7 +5,7 @@ use anyhow::Result;
 use async_recursion::async_recursion;
 use bytes::Bytes;
 use image::DynamicImage;
-use log::{debug, error};
+use log::error;
 use reqwest::{Client, Url};
 use std::sync::{Arc, Mutex};
 use tokio::{sync::mpsc::Sender, task::JoinHandle};

@@ -41,8 +41,8 @@ pub fn set_from_path(p: PathBuf) -> Result<(), std::io::Error> {
 
 #[cfg(not(target_os = "linux"))]
 /// Sets the background for any non pop!_os OS.
-pub fn set_from_path(p: PathBuf) {
-    wallpaper::set_from_path(p.to_str().unwrap()).unwrap();
+pub fn set_from_path<P: Into<String>>(p: P) {
+    wallpaper::set_from_path(&p.into()).expect("Unable to set wallpaper.");
 }
 
 #[derive(Debug)]
@@ -70,8 +70,9 @@ impl FullDisc {
     }
     /// Sets the current wallpaper to whatever's stored in the path field.
     pub fn set_this(&self) -> Result<(), Error> {
+        //TODO: fix these unwraps..
         if self.path.metadata().ok().unwrap().len() > 0 {
-            _ = set_from_path(self.path.clone());
+            set_from_path(self.path.to_str().unwrap());
             Ok(())
         } else {
             panic!("File failed to concatenate/parse or something, check your directories are set correctly etc.")

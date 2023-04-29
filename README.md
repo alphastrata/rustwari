@@ -60,7 +60,8 @@ Options:
   -q, --quiet                          Enjoy a silent app with nothing more than a progressbar
   -v, --verbose                        Not reccomended unless developing
   -o, --open                           <WIP>Open the image after completing it's retrival
-  -o, --oneshot <ONESHOT>              <WIP>Get one, and only one specific image from Himawari8's dataset. You must use the DDMMYYYY HHMMSS format, for example: rustwari --oneshot 18082018 090000 #would be 9am on the 18th Aug 2018
+  -o, --oneshot <ONESHOT>              Get one, and only one specific image from Himawari8's dataset. You must use the DDMMYYYY HHMMSS format, for example: rustwari --oneshot "18082018 0900"
+  #would be 9am on the 18th Aug 2018
   -h, --help                           Print help
   -V, --version                        Print version
 

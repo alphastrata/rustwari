@@ -33,6 +33,10 @@ pub struct Cli {
     /// Get the entry for YYYY-MM-DD HH:MM, note you'll need to wrap it all in ' or "s
     #[arg(long)]
     pub oneshot: Option<String>,
+
+    /// Do you want the app to backup used backgrounds to an alternative directory?
+    #[arg(long, default_value_t = false)]
+    pub backup: bool,
 }
 
 impl Cli {

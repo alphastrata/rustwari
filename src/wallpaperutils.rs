@@ -72,7 +72,7 @@ impl FullDisc {
     pub fn set_this(&self) -> Result<(), Error> {
         //TODO: fix these unwraps..
         if self.path.metadata().ok().unwrap().len() > 0 {
-            set_from_path(self.path.to_str().unwrap());
+            _ = set_from_path(self.path.to_str().unwrap().into());
             Ok(())
         } else {
             panic!("File failed to concatenate/parse or something, check your directories are set correctly etc.")

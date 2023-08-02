@@ -23,13 +23,11 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
 
     let handles = fetch_full_disc(client, hwdt, tx).await?;
 
-    #[allow(clippy::await_holding_lock)] // We are using a mutex clippy!
     for h in handles
         .lock()
         .expect("Unable to lock joinhandles")
         .drain(..)
     {
-        #[allow(clippy::await_holding_lock)]
         h.await?;
     }
 
@@ -42,7 +40,9 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
 
     fulldisc.set_this()?;
 
-    move_completed_to_backup(fulldisc.path, uc)?;
+    if cli.backup {
+        move_completed_to_backup(fulldisc.path, uc)?;
+    }
 
     if cli.verbose {
         debug!("{}", t1.elapsed().as_secs_f64());
@@ -137,6 +137,7 @@ mod tests {
             resize: true,
             open: false,
             oneshot: None,
+            backup: false,
         };
 
         let client = Client::new();

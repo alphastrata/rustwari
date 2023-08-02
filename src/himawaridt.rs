@@ -5,7 +5,7 @@ use chrono::{Datelike, Timelike, Utc};
 use log::debug;
 use log::{error, warn};
 use std::path::Path;
-use url::{Url};
+use url::Url;
 
 const URLBASE: &str = r#"https://himawari8.nict.go.jp/img/D531106/20d/550/"#;
 
@@ -85,7 +85,7 @@ impl HimawariDatetime {
 
     /// Constructs a [`HimawariDatetime`] closest to your current time, minus 20 minutes.
     pub fn closest_to_now() -> Self {
-        let now = Utc::now() - chrono::Duration::minutes(20);
+        let now = Utc::now() - chrono::Duration::minutes(260);
         debug!("closest_to_now() set at: {}", &now);
         Self {
             year: now.year() as u32,

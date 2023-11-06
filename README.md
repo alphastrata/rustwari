@@ -28,6 +28,7 @@ It's had many tweaks over the years, most recently the move to doing everything 
 2. Internet connection
 3. [This repo](https://github.com/alphastrata/rustwari/)
 4. A high(ish) ulmit `ulimit -n 10240` ought to do it. (the app will try to set it for you.)
+5. _If you're a hyprpaper, if you're the hyprland type..._
 
 # Usage:
 
@@ -36,7 +37,7 @@ _the app assumes you've two dirs (somewhere) called `completed` and `backup`, id
 
 ```
 cd rustwari
-cargo build --release
+cargo build --release # hyprland+hyprpaper users should use the --features "hypr" build flag
 ./target/release/rustwari --help
 
 ```
@@ -58,13 +59,16 @@ Usage: rustwari [OPTIONS]
 
 Options:
   -q, --quiet                          Enjoy a silent app with nothing more than a progressbar
+      --hypr                           Enjoy a silent app with nothing more than a progressbar
   -v, --verbose                        Not reccomended unless developing
-  --open                           Open the image after completing it's retrival, always run on oneshot.
-  --oneshot <ONESHOT>              Get one, and only one specific image from Himawari8's dataset. You must use the DDMMYYYY HHMMSS format, for example: rustwari --oneshot "2018-08-18 09:00"
-  #would be 9am on the 18th Aug 2018
+      --completed-dir <COMPLETED_DIR>  <WIP>Override the `completed` dir in your existing config file
+  -c, --config-file <CONFIG_FILE>      <WIP>If you have a specific path to the config.yml this app uses to provide specific paths to where you want temporary, and, completed Images stored
+  -r, --resize                         Resize the image after processing, default is false
+      --open                           Open the image after completing it's retrival
+      --oneshot <ONESHOT>              Get the entry for YYYY-MM-DD HH:MM, note you'll need to wrap it all in ' or "s
+      --backup                         Do you want the app to backup used backgrounds to an alternative directory?
   -h, --help                           Print help
   -V, --version                        Print version
-
 ```
 
 So, for a oneshot (which automatically wil try to open the downloaded image)

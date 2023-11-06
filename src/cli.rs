@@ -9,11 +9,6 @@ pub struct Cli {
     #[arg(short, long, default_value_t = true)]
     pub quiet: bool,
 
-    #[cfg(feature = "hypr")]
-    /// Enjoy a silent app with nothing more than a progressbar.
-    #[arg(long, default_value_t = true)]
-    pub hypr: bool,
-
     /// Not reccomended unless developing.
     #[arg(short, long, default_value_t = false)]
     pub verbose: bool,

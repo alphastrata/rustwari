@@ -38,7 +38,13 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
         fulldisc.resize_this(5120, 5120)?; //TODO: const
     }
 
-    fulldisc.set_this()?;
+    #[cfg(feature = "hypr")]
+    if !cli.hypr {
+        fulldisc.set_this()?;
+    } else {
+        // hyprland
+        fulldisc.set_with_hyprpaper();
+    }
 
     if cli.backup {
         move_completed_to_backup(fulldisc.path, uc)?;

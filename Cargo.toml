@@ -23,6 +23,9 @@ homepage = "https://github.com/alphastrata/rustwari"
 repository = "https://github.com/alphastrata/rustwari"
 categories = ["command-line-utilities"]
 
+[features]
+hypr = []
+
 [[bin]]
 name = "rustwari"
 path = "src/main.rs"

@@ -15,7 +15,7 @@ pub fn setup_logger(verbose: bool) -> Result<(), fern::InitError> {
                     message
                 ))
             })
-            .level(log::LevelFilter::Info)
+            .level(log::LevelFilter::Debug)
             .chain(fern::log_file(termite_path)?)
             .chain(std::io::stdout())
             .apply()?;

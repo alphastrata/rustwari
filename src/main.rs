@@ -31,14 +31,17 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
         h.await?;
     }
 
-    // Set that badboy as your wallpaper.
     let mut fulldisc: FullDisc = assemble_full_disc(hwdt, uc, cli, rx).await?;
 
     if cli.resize {
         fulldisc.resize_this(5120, 5120)?; //TODO: const
     }
 
+    #[cfg(not(feature = "hypr"))]
     fulldisc.set_this()?;
+
+    #[cfg(feature = "hypr")]
+    fulldisc.set_with_hyprpaper();
 
     if cli.backup {
         move_completed_to_backup(fulldisc.path, uc)?;

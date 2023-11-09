@@ -1,4 +1,4 @@
-tilesdir: /media/jer/ARCHIVE/HIMAWARI_DATA/tiles
-tmp: /media/jer/ARCHIVE/HIMAWARI_DATA/tmp
-completed: /media/jer/ARCHIVE/HIMAWARI_DATA/completed
-backup: /media/jer/ARCHIVE/HIMAWARI_DATA/tmp
+tilesdir: /run/media/jer/ARCHIVE/HIMAWARI_DATA/tiles
+tmp: /run/media/jer/ARCHIVE/HIMAWARI_DATA/tmp
+completed: /run/media/jer/ARCHIVE/HIMAWARI_DATA/completed
+backup: /run/media/jer/ARCHIVE/HIMAWARI_DATA/tmp

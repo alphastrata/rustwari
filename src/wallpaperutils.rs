@@ -8,38 +8,6 @@ use log::debug;
 use std::fs;
 use std::path::PathBuf;
 
-#[cfg(target_os = "linux")]
-use std::process::Command;
-
-#[cfg(target_os = "linux")]
-/// As a dark-mode user the wallpaper crate doesn't accomidate my paticular gsettings requirements...
-pub fn set_from_path(p: PathBuf) -> Result<(), std::io::Error> {
-    let fp = format!("{}", &p.display());
-    debug!("setting_with arg: {:?} ", fp);
-
-    debug!("Detected Pop!_OS, so running for that.");
-    // Set the BG for Pop, when it's in darkmode
-    let _set= Command::new("gsettings")
-    .arg("set")
-    .arg("org.gnome.desktop.background")
-    .arg("picture-uri-dark") //NOTE: will break for non dark-mode users.
-    .arg(fp)
-    .spawn()
-    .expect("Unable to set image, potential issue with the hardcoded approach to changing/setting wallpaper?\nOr, it could be that your Pop!_OS's theme is not set to dark-mode.");
-
-    // specialised centering for Pop!
-    //gsettings set org.gnome.desktop.background picture-options 'centered'
-    let _center = Command::new("gsettings")
-        .arg("set")
-        .arg("org.gnome.desktop.background")
-        .arg("picture-options")
-        .arg("scaled")
-        .spawn()
-        .expect("Unable to center image.");
-    Ok(())
-}
-
-#[cfg(not(target_os = "linux"))]
 /// Sets the background for any non pop!_os OS.
 pub fn set_from_path<P: Into<String>>(p: P) {
     wallpaper::set_from_path(&p.into()).expect("Unable to set wallpaper.");
@@ -72,10 +40,60 @@ impl FullDisc {
     pub fn set_this(&self) -> Result<(), Error> {
         //TODO: fix these unwraps..
         if self.path.metadata().ok().unwrap().len() > 0 {
-            _ = set_from_path(self.path.to_str().unwrap().into());
+            _ = set_from_path::<String>(self.path.to_str().unwrap().into());
             Ok(())
         } else {
             panic!("File failed to concatenate/parse or something, check your directories are set correctly etc.")
+        }
+    }
+
+    /// Sets the wallpaper wit hyperland's hyprpaper (wayland only)
+    #[cfg(feature = "hypr")]
+    pub fn set_with_hyprpaper(&self) {
+        // Unload
+        let hyprctrl_unload = std::process::Command::new("hyprctl")
+            .arg("hyprpaper")
+            .arg("unload")
+            .arg("all")
+            .output()
+            .expect("Failed to execute command");
+
+        if !hyprctrl_unload.status.success() {
+            eprintln!(
+                "hyprctrl unload failed with: {}",
+                String::from_utf8_lossy(&hyprctrl_unload.stderr)
+            );
+        }
+
+        // Preload
+        let hyprctrl_preload = std::process::Command::new("hyprctl")
+            .arg("hyprpaper")
+            .arg("preload")
+            .arg(format!("{}", self.path.display()))
+            .output()
+            .expect("Failed to execute command");
+        log::debug!("Preloading: {:?}", self.path.display());
+
+        if !hyprctrl_preload.status.success() {
+            eprintln!(
+                "hyprctrl preload failed with: {}",
+                String::from_utf8_lossy(&hyprctrl_preload.stderr)
+            );
+        }
+
+        // Set
+        let hyprctrl_set = std::process::Command::new("hyprctl")
+            .arg("hyprpaper")
+            .arg("wallpaper")
+            .arg(format!("DP-1,contain:{}", self.path.display()))
+            .output()
+            .expect("Failed to execute command");
+
+        if !hyprctrl_set.status.success() {
+            eprintln!(
+                "hyprctrl wallpaper failed with: {}",
+                String::from_utf8_lossy(&hyprctrl_set.stderr)
+            );
         }
     }
 

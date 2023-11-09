@@ -50,16 +50,48 @@ impl FullDisc {
     /// Sets the wallpaper wit hyperland's hyprpaper (wayland only)
     #[cfg(feature = "hypr")]
     pub fn set_with_hyprpaper(&self) {
+        // Unload
+        let hyprctrl_unload = std::process::Command::new("hyprctl")
+            .arg("hyprpaper")
+            .arg("unload")
+            .arg("all")
+            .output()
+            .expect("Failed to execute command");
+
+        if !hyprctrl_unload.status.success() {
+            eprintln!(
+                "hyprctrl unload failed with: {}",
+                String::from_utf8_lossy(&hyprctrl_unload.stderr)
+            );
+        }
+
+        // Preload
+        let hyprctrl_preload = std::process::Command::new("hyprctl")
+            .arg("hyprpaper")
+            .arg("preload")
+            .arg(format!("{}", self.path.display()))
+            .output()
+            .expect("Failed to execute command");
+        log::debug!("Preloading: {:?}", self.path.display());
+
+        if !hyprctrl_preload.status.success() {
+            eprintln!(
+                "hyprctrl preload failed with: {}",
+                String::from_utf8_lossy(&hyprctrl_preload.stderr)
+            );
+        }
+
+        // Set
         let hyprctrl_set = std::process::Command::new("hyprctl")
             .arg("hyprpaper")
             .arg("wallpaper")
-            .arg(format!("DP-1,{}", self.path.display()))
+            .arg(format!("DP-1,contain:{}", self.path.display()))
             .output()
             .expect("Failed to execute command");
 
         if !hyprctrl_set.status.success() {
             eprintln!(
-                "Command executed with errors: {}",
+                "hyprctrl wallpaper failed with: {}",
                 String::from_utf8_lossy(&hyprctrl_set.stderr)
             );
         }

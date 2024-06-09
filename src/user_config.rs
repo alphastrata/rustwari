@@ -6,7 +6,7 @@ use std::io::Read;
 use std::path::Path;
 
 //TODO: paths for anyone...
-pub const CONFIGDIR: &str = ".";
+pub const CONFIGDIR: &str = ".rustwari";
 pub const USERCONFIG: &str = "config.yml";
 
 /// Holds all the information a user will need to populate their yaml file with in order to

@@ -37,12 +37,17 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
         fulldisc.resize_this(5120, 5120)?; //TODO: const
     }
 
-    #[cfg(not(feature = "hypr"))]
-    fulldisc.set_this()?;
+    if !cli.daemon {
+        log::debug!("Not in debug mode, setting...");
+        #[cfg(not(feature = "hypr"))]
+        fulldisc.set_this()?;
 
-    #[cfg(feature = "hypr")]
-    fulldisc.set_with_hyprpaper();
+        #[cfg(feature = "hypr")]
+        fulldisc.set_with_hyprpaper();
+    }
 
+    debug!("{}", &fulldisc.path.display());
+    assert!(fulldisc.path.exists());
     if cli.backup {
         move_completed_to_backup(fulldisc.path, uc)?;
     }
@@ -141,6 +146,7 @@ mod tests {
             open: false,
             oneshot: None,
             backup: false,
+            daemon: false,
         };
 
         let client = Client::new();

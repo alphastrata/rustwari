@@ -13,6 +13,11 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub verbose: bool,
 
+    /// Just download the images to the `completed` directory, if you're
+    /// using another wallpaper manager like hyprpaper or wpaperd you want this.
+    #[arg(short, long, default_value_t = false)]
+    pub daemon: bool,
+
     /// <WIP>Override the `completed` dir in your existing config file.
     #[arg(long)]
     pub completed_dir: Option<String>,

@@ -26,12 +26,13 @@ pub async fn tokio_tile_fetcher(
                 tx.send((it, rt)).await.unwrap();
             }
             Err(err) => loop {
+                error!("{}", err);
+                log::trace!("trying again...");
                 // Keep spamming till we get it..
                 if let Ok(it) = rt.download_image(&client_c).await {
                     tx.send((it, rt)).await.unwrap();
                     break;
                 }
-                error!("{}", err);
             },
         }
     });
@@ -49,13 +50,15 @@ pub async fn fetch_full_disc(
 ) -> Result<Arc<Mutex<Vec<JoinHandle<()>>>>> {
     use futures::future::join_all;
     let handles = Arc::new(Mutex::new(Vec::new()));
+    let a_client = Arc::new(client);
 
     let fetch_tasks = (0..ROWMAX)
         .flat_map(|x| (0..COLMAX).map(move |y| (x, y)))
         .map(|(x, y)| {
-            let client = client.clone();
+            let client = a_client.clone();
             let tx = tx.clone();
             let handles = handles.clone();
+
             async move {
                 let url = hwdt.get_url(x, y).unwrap();
                 let rt = RemoteTile::new(x, y, url).await;

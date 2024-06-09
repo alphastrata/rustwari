@@ -35,7 +35,8 @@ pub fn move_completed_to_backup(path: PathBuf, uc: &Config) -> Result<()> {
         &path,
         Path::new(&uc.backup).join(path.file_name().expect("Unable to view file name.")),
     )?;
-    debug!("Files backed up!");
+
+    debug!("Files backed up @ {}", &path.canonicalize()?.display());
     Ok(())
 }
 pub async fn exists(path: PathBuf) -> bool {

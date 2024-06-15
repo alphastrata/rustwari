@@ -1,7 +1,9 @@
 use crate::cvutils::get_dims;
 
 #[cfg(feature = "wpaperd")]
-use crate::wpaperd_utils::get_monitor_names;
+mod wpaperd_utils;
+#[cfg(feature = "wpaperd")]
+use wpaperd_utils::get_monitor_names;
 
 use anyhow::Error;
 use anyhow::Result;
@@ -16,8 +18,9 @@ pub fn set_from_path<P: Into<String>>(p: P) {
     wallpaper::set_from_path(&p.into()).expect("Unable to set wallpaper.");
 }
 
-#[derive(Debug)]
 /// Representing a full, 121MP [`image`]
+#[derive(Debug)]
+#[allow(dead_code)]
 pub struct FullDisc {
     pub path: PathBuf,
     //TODO: set the screen dims based on a user's machine, then only fetch something close to
@@ -50,19 +53,12 @@ impl FullDisc {
         }
     }
 
-    // #[cfg(feature = "wpaperd")]
+    #[cfg(feature = "wpaperd")]
     pub fn set_with_wpaperd(&self) {
-        use wpaperd_utils::get_monitor_names;
-
-        get_monitor_names().iter().for_each(|mon| {
-            let output = Command::new("nixGL")
-                .arg("cargo")
-                .arg("run")
-                .arg("--bin")
-                .arg("wpaperctl")
-                .arg("--")
+        get_monitor_names().into_iter().for_each(|mon| {
+            let output = std::process::Command::new("wpaperctl")
                 .arg("set")
-                .arg(self.path.display())
+                .arg(&self.path)
                 .arg(mon)
                 .output()
                 .expect("Failed to execute command");

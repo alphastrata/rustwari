@@ -1,22 +1,49 @@
 {
+  description = "Rust dev shell";
+
   inputs = {
-    naersk.url = "github:nix-community/naersk/master";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, utils, naersk }:
-    utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-        naersk-lib = pkgs.callPackage naersk { };
-      in
-      {
-        defaultPackage = naersk-lib.buildPackage ./.;
-        devShell = with pkgs; mkShell {
-          buildInputs = [ cargo rustc rustfmt pre-commit rustPackages.clippy ];
-          RUST_SRC_PATH = rustPlatform.rustLibSrc;
+  outputs = { self, nixpkgs, rust-overlay }:
+    let
+      overlays = [
+        (import rust-overlay)
+        (self: super: {
+          rustToolchain = super.rust-bin.nightly.latest.default;
+        })
+      ];
+
+      allSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+
+      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {
+        pkgs = import nixpkgs { inherit overlays system; };
+      });
+    in
+    {
+      devShells = forAllSystems ({ pkgs }: {
+        default = pkgs.mkShell {
+          packages = (with pkgs; [
+            lld
+            openssl
+            pkg-config
+            rustToolchain
+            ]) ++ pkgs.lib.optionals pkgs.stdenv.isDarwin (with pkgs; [ libiconv ]);
+
+          shellHook = ''
+            export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.lib.makeLibraryPath [
+               pkgs.openssl
+
+            ]}"
+            rustup default nightly
+          '';
         };
-      }
-    );
+      });
+    };
 }

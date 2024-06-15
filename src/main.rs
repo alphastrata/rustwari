@@ -44,6 +44,9 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
 
         #[cfg(feature = "hypr")]
         fulldisc.set_with_hyprpaper();
+
+        #[cfg(feature = "wpaperd")]
+        fulldisc.set_with_wpaperd();
     }
 
     debug!("{}", &fulldisc.path.display());
@@ -96,7 +99,7 @@ async fn main() -> Result<()> {
 
 async fn run_oneshot(client: &Client, cli: &Cli, uc: &Config) -> Result<()> {
     if let Some(oneshot_str) = cli.oneshot.clone() {
-        let hwdt = NaiveDateTime::parse_from_str(&oneshot_str, "%Y-%m-%d %H:%M").unwrap(); //_or_else(|e| panic!("{e:#?}\n{oneshot_str}"));
+        let hwdt = NaiveDateTime::parse_from_str(&oneshot_str, "%Y-%m-%d %H:%M").unwrap();
 
         let (tx, rx) = mpsc::channel(400);
 

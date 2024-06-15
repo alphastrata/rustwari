@@ -26,7 +26,7 @@ categories = ["command-line-utilities"]
 [features]
 hyprpaper = []
 wpaperd = ["dep:serde_json"]
-default = []
+default = ["wpaperd"]
 
 [[bin]]
 name = "rustwari"

@@ -32,25 +32,18 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
     }
 
     let mut fulldisc: FullDisc = assemble_full_disc(hwdt, uc, cli, rx).await?;
+    assert!(fulldisc.path.exists());
+    debug!("{}", &fulldisc.path.display());
 
     if cli.resize {
-        fulldisc.resize_this(5120, 5120)?; //TODO: const
+        fulldisc.resize_this(5012, 5012)?;
     }
 
     if !cli.daemon {
-        log::debug!("Not in debug mode, setting...");
-        #[cfg(not(feature = "hypr"))]
+        debug!("Not in daemon mode, setting...");
         fulldisc.set_this()?;
-
-        #[cfg(feature = "hypr")]
-        fulldisc.set_with_hyprpaper();
-
-        #[cfg(feature = "wpaperd")]
-        fulldisc.set_with_wpaperd();
     }
 
-    debug!("{}", &fulldisc.path.display());
-    assert!(fulldisc.path.exists());
     if cli.open {
         that(fulldisc.path.as_path())?;
     }
@@ -70,6 +63,8 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    pretty_env_logger::init();
+
     let client = Client::new();
     let cli = Cli::init();
 
@@ -78,7 +73,14 @@ async fn main() -> Result<()> {
     let uc = Config::new_from_yaml(USERCONFIG)?;
 
     if cli.verbose {
-        setup_logger(true).expect("FAILED TO INIT LOGGER!");
+        // setup_logger(true).expect("FAILED TO INIT LOGGER!");
+
+        #[cfg(feature = "wpaperd")]
+        debug!(" - wpaperd");
+
+        #[cfg(feature = "hyprpaper")]
+        debug!(" - hyprpaper");
+
         debug!("{uc:#?}");
     }
 

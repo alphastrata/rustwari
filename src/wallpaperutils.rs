@@ -42,33 +42,56 @@ impl FullDisc {
             size,
         })
     }
+
     /// Sets the current wallpaper to whatever's stored in the path field.
     pub fn set_this(&self) -> Result<(), Error> {
-        //TODO: fix these unwraps..
-        if self.path.metadata().ok().unwrap().len() > 0 {
-            _ = set_from_path::<String>(self.path.to_str().unwrap().into());
-            Ok(())
-        } else {
-            panic!("File failed to concatenate/parse or something, check your directories are set correctly etc.")
+        #[cfg(feature = "wpaperd")]
+        {
+            log::debug!("Setting with wlpaperctl");
+            self.set_with_wpaperd();
         }
+
+        #[cfg(feature = "hyprpaper")]
+        {
+            log::debug!("Setting with hyprctl");
+            self.set_with_hyprpaper();
+        }
+
+        #[cfg(not(any(feature = "wpaperd", feature = "hyprpaper")))]
+        {
+            if self.path.metadata()?.len() > 0 {
+                _ = set_from_path::<String>(self.path.to_str().unwrap().into());
+            } else {
+                panic!("File failed to concatenate/parse or something, check your directories are set correctly etc.")
+            }
+        }
+
+        Ok(())
     }
 
     #[cfg(feature = "wpaperd")]
     pub fn set_with_wpaperd(&self) {
         get_monitor_names().into_iter().for_each(|mon| {
-            let output = std::process::Command::new("wpaperctl")
+            log::trace!("Attempting to set {} to {}", self.path.display(), mon);
+            assert!(self.path.exists());
+
+            // let output = std::process::Command::new("wpaperctl");
+            let mut output = std::process::Command::new("nixGL");
+            output
+                .arg("/home/jer/Documents/wpaperd/target/release/wpaperctl")
                 .arg("set")
                 .arg(&self.path)
-                .arg(mon)
-                .output()
-                .expect("Failed to execute command");
+                .arg(mon);
 
-            // Check the output
+            log::trace!("cmd: {:#?}", output);
+
+            let output = output.output().expect("Failed to execute command");
+
             if output.status.success() {
-                println!("Command executed successfully");
+                log::debug!("Command executed successfully");
             } else {
-                println!("Command failed to execute");
-                println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
+                log::error!("Command failed to execute");
+                log::error!("stderr: {}", String::from_utf8_lossy(&output.stderr));
             }
         });
     }

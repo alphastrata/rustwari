@@ -1,58 +1,22 @@
 {
-  description = "Wallpaper daemon for Wayland";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    systems.url = "github:nix-systems/default-linux";
+    naersk.url = "github:nix-community/naersk/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    systems,
-    ...
-  }: let
-    inherit (nixpkgs) lib;
-    eachSystem = lib.genAttrs (import systems);
-    pkgsFor = eachSystem (system:
-      import nixpkgs {
-        inherit system;
-        overlays = [self.overlays.default];
-      });
-  in {
-    overlays = import ./nix/overlays.nix {inherit self lib;};
-
-    packages = eachSystem (system: {
-      default = self.packages.${system}.wpaperd;
-
-      inherit
-        (pkgsFor.${system})
-        wpaperd
-        ;
-    });
-
-    devShells = eachSystem (system:
-      with pkgsFor.${system}; {
-        default = mkShell {
-          packages = [
-            pkg-config
-            wayland
-            egl-wayland
-            glew-egl
-            mesa
-          ];
-
-          shellHook = ''
-            # Set LD_LIBRARY_PATH to include paths to Mesa libraries
-            export LD_LIBRARY_PATH="${lib.makeLibraryPath [ wayland glew-egl egl-wayland mesa ]}:$LD_LIBRARY_PATH"
-          '';
+  outputs = { self, nixpkgs, utils, naersk }:
+    utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+        naersk-lib = pkgs.callPackage naersk { };
+      in
+      {
+        defaultPackage = naersk-lib.buildPackage ./.;
+        devShell = with pkgs; mkShell {
+          buildInputs = [ cargo rustc rustfmt pre-commit rustPackages.clippy ];
+          RUST_SRC_PATH = rustPlatform.rustLibSrc;
         };
-      });
-
-    formatter = eachSystem (system: pkgsFor.${system}.alejandra);
-    homeManagerModules.default = import ./nix/hm-module.nix self;
-  };
-
-
-  
+      }
+    );
 }

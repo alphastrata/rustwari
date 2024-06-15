@@ -1,5 +1,8 @@
 use crate::cvutils::get_dims;
 
+#[cfg(feature = "wpaperd")]
+use crate::wpaperd_utils::get_monitor_names;
+
 use anyhow::Error;
 use anyhow::Result;
 use image::imageops::FilterType;
@@ -47,8 +50,35 @@ impl FullDisc {
         }
     }
 
+    // #[cfg(feature = "wpaperd")]
+    pub fn set_with_wpaperd(&self) {
+        use wpaperd_utils::get_monitor_names;
+
+        get_monitor_names().iter().for_each(|mon| {
+            let output = Command::new("nixGL")
+                .arg("cargo")
+                .arg("run")
+                .arg("--bin")
+                .arg("wpaperctl")
+                .arg("--")
+                .arg("set")
+                .arg(self.path.display())
+                .arg(mon)
+                .output()
+                .expect("Failed to execute command");
+
+            // Check the output
+            if output.status.success() {
+                println!("Command executed successfully");
+            } else {
+                println!("Command failed to execute");
+                println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
+            }
+        });
+    }
+
     /// Sets the wallpaper wit hyperland's hyprpaper (wayland only)
-    #[cfg(feature = "hypr")]
+    #[cfg(feature = "hyprpaper")]
     pub fn set_with_hyprpaper(&self) {
         // Unload
         let hyprctrl_unload = std::process::Command::new("hyprctl")
@@ -109,6 +139,7 @@ impl FullDisc {
         Ok(())
     }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;

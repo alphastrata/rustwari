@@ -24,7 +24,9 @@ repository = "https://github.com/alphastrata/rustwari"
 categories = ["command-line-utilities"]
 
 [features]
-hypr = []
+hyprpaper = []
+wpaperd = ["dep:serde_json"]
+default = ["wpaperd"]
 
 [[bin]]
 name = "rustwari"
@@ -47,6 +49,7 @@ os_info = "3.5.1"
 pretty_env_logger = "0.5.0"
 reqwest = "0.11.13"
 serde = { version = "1.0.152", features = ["derive"] }
+serde_json = { version = "1.0.117", optional = true }
 serde_yaml = "0.9.16"
 tokio = { version = "1.24.1", features = ["full"] }
 url = "2.3.1"

@@ -48,7 +48,12 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
 
     debug!("{}", &fulldisc.path.display());
     assert!(fulldisc.path.exists());
+    if cli.open {
+        that(fulldisc.path.as_path())?;
+    }
+    //TODO: if the img we've saved on disc is of size 0 -- we fucked up, warn them.
     if cli.backup {
+        log::trace!("Backup running...");
         move_completed_to_backup(fulldisc.path, uc)?;
     }
 

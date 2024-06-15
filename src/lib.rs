@@ -10,3 +10,6 @@ pub mod termite;
 pub mod tiles;
 pub mod user_config;
 pub mod wallpaperutils;
+
+#[cfg(features = "wpaperd")]
+pub mod wpaperd_utils;

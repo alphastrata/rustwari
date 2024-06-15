@@ -99,9 +99,9 @@ impl RemoteTile {
     /// Downloads the tile to the specified path
     pub async fn download_image(&self, client: &Client) -> Result<Bytes, reqwest::Error> {
         let url = self.url.clone();
+        log::trace!("{}", &url);
         let resp = client.get(url).send().await?.error_for_status()?;
-
-        let bytes = resp.bytes().await.unwrap();
+        let bytes = resp.bytes().await?;
 
         Ok(bytes)
     }

@@ -1,51 +1,58 @@
 {
-  description = "Rust dev shell for Bevy based on zero to nix rust dev flake";
+  description = "Wallpaper daemon for Wayland";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    systems.url = "github:nix-systems/default-linux";
   };
 
-  outputs = { self, nixpkgs, rust-overlay }:
-    let
-      overlays = [
-        (import rust-overlay)
-        (self: super: {
-          rustToolchain = super.rust-bin.nightly.latest.default;
-        })
-      ];
-
-      allSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
-
-      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {
-        pkgs = import nixpkgs { inherit overlays system; };
+  outputs = {
+    self,
+    nixpkgs,
+    systems,
+    ...
+  }: let
+    inherit (nixpkgs) lib;
+    eachSystem = lib.genAttrs (import systems);
+    pkgsFor = eachSystem (system:
+      import nixpkgs {
+        inherit system;
+        overlays = [self.overlays.default];
       });
-    in
-    {
-      devShells = forAllSystems ({ pkgs }: {
-        default = pkgs.mkShell {
-          packages = (with pkgs; [
-            # libxkbcommon
-            # lld
-            openssl
+  in {
+    overlays = import ./nix/overlays.nix {inherit self lib;};
+
+    packages = eachSystem (system: {
+      default = self.packages.${system}.wpaperd;
+
+      inherit
+        (pkgsFor.${system})
+        wpaperd
+        ;
+    });
+
+    devShells = eachSystem (system:
+      with pkgsFor.${system}; {
+        default = mkShell {
+          packages = [
             pkg-config
-            rustToolchain
             wayland
-          ]) ++ pkgs.lib.optionals pkgs.stdenv.isDarwin (with pkgs; [ libiconv ]);
+            egl-wayland
+            glew-egl
+            mesa
+          ];
 
           shellHook = ''
-            export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.lib.makeLibraryPath [
-              pkgs.openssl
-
-            ]}"
-            rustup default nightly
+            # Set LD_LIBRARY_PATH to include paths to Mesa libraries
+            export LD_LIBRARY_PATH="${lib.makeLibraryPath [ wayland glew-egl egl-wayland mesa ]}:$LD_LIBRARY_PATH"
           '';
         };
       });
-    };
+
+    formatter = eachSystem (system: pkgsFor.${system}.alejandra);
+    homeManagerModules.default = import ./nix/hm-module.nix self;
+  };
+
+
+  
 }

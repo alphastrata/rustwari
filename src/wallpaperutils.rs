@@ -118,7 +118,7 @@ mod tests {
     #[test]
     fn set_from_path_works() {
         let path = PathBuf::from("test_data/fulldisc-2022-09-21 00_10.png");
-        _ = set_from_path(path);
+        _ = set_from_path(path.to_string_lossy().to_string());
     }
 
     #[ignore]

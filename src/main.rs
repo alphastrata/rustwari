@@ -57,8 +57,14 @@ async fn run(client: &Client, uc: &Config, cli: &Cli) -> Result<()> {
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let client = Client::new();
     let cli = Cli::init();
+
+    let client = Client::builder()
+        .use_native_tls()
+        // They (nict.go.jp) haven't updated their certs, so we bypass it... not ideal but meh use at your own risk!
+        .danger_accept_invalid_certs(true)
+        .build()
+        .expect("Failed to create HTTP client");
 
     //Setup
     Config::check_config_exits(USERCONFIG).expect("User Config doesn't exist :(");
@@ -143,7 +149,11 @@ mod tests {
             backup: false,
         };
 
-        let client = Client::new();
+        let client = Client::builder()
+            .use_native_tls()
+            .danger_accept_invalid_certs(true) // Bypass certificate verification by default
+            .build()
+            .expect("Failed to create HTTP client");
 
         Config::check_config_exits(USERCONFIG).expect("User Config doesn't exist :(");
         let uc = Config::new_from_yaml(USERCONFIG).unwrap();
